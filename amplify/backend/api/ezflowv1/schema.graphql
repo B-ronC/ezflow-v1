@@ -1,0 +1,27 @@
+type UserTest @model @auth(rules: [{ allow: private, operations: [read] }]) {
+  id: ID!
+  name: String!
+  teams: [TeamTest] @manyToMany(relationName: "UserTeams")
+  tasks: [TaskTest] @manyToMany(relationName: "UserTasks")
+}
+
+type TaskTest
+  @model
+  @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
+  id: ID!
+  teamID: ID! @index(name: "byTeam", sortKeyFields: ["title"])
+  title: String!
+  description: String!
+  to: [UserTest] @manyToMany(relationName: "UserTasks")
+  from: UserTest! @hasOne
+  team: TeamTest! @hasOne
+}
+
+type TeamTest
+  @model
+  @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
+  id: ID!
+  name: String!
+  members: [UserTest] @manyToMany(relationName: "UserTeams")
+  tasks: [TaskTest] @hasMany(indexName: "byTeam", fields: ["id"])
+}

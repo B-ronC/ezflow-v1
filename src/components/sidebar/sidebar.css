@@ -1,0 +1,66 @@
+.sidebar {
+    flex: 1;
+    height: calc(100vh - 40px);
+    background-color: rgb(230, 230, 230);
+    position: sticky;
+    top: 40px;
+}
+
+.sidebarWrapper {
+    padding: 20px;
+    color: #555;
+}
+
+.sidebarMenu {
+    margin-bottom: 10px;
+}
+
+.createTitle {
+    font-size: 17px;
+    color: darkslateblue; 
+}
+
+.mateTitle {
+    cursor: pointer;
+    font-size: 17px;
+    color: darkslateblue; 
+}
+
+.mateTitle.active, 
+.mateTitle:hover {
+    background-color: rgb(210, 210, 210);;
+}
+
+.teamTitle {
+    cursor: pointer;
+    font-size: 17px;
+    color: darkslateblue; 
+}
+
+.teamTitle.active, 
+.teamTitle:hover {
+    background-color: rgb(210, 210, 210);;
+}
+
+.teamList {
+    list-style: none;
+    padding: 5px;
+}
+
+.teams {
+    padding: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.teams.active, 
+.teams:hover {
+    background-color: rgb(210, 210, 210);;
+}
+
+.icon {
+    margin-right: 7px;
+    font-size: 20px !important;
+}

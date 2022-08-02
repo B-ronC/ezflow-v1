@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Topbar from './components/topbar/Topbar';
+import Sidebar from './components/sidebar/Sidebar';
+import Home from './pages/home/Home';
+import TeamPage from './pages/teamPage/TeamPage';
+import './app.css'
 
-function App() {
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+
+import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
+function App({ signOut, user }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Topbar/>
+      <div className='container'>
+        <Sidebar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/teamPage/:id' element={<TeamPage />} />
+        </Routes>
+      </div>
+      <button onClick={signOut}>Sign out</button>
+    </>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

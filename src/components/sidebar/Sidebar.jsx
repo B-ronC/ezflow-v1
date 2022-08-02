@@ -1,8 +1,7 @@
-import "./sidebar.css"
-import GroupIcon from '@mui/icons-material/Group';
+import "./sidebar.css";
 import { Link } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify"
-import { getTeamTest, listTeamTests, listUserTeams } from "../../graphql/queries"
+import { listUserTeams } from "../../graphql/queries"
 import { createTeamTest, createUserTeams } from "../../graphql/mutations"
 import { useEffect, useState } from 'react';
 

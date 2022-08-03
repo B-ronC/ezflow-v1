@@ -1,11 +1,14 @@
 import './teamsettings.css'
-import React, { useContext } from 'react'
+import React from 'react'
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar'
-import { Link, useParams, useLocation } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { API, graphqlOperation } from "aws-amplify"
 import { listUserTeams } from "../../graphql/queries"
 import { deleteTeamTest, deleteUserTeams } from "../../graphql/mutations"
-import { Auth } from 'aws-amplify';
+
+import { root } from '../..'
+import App from '../../App'
+import { BrowserRouter } from 'react-router-dom';
 
 export const idContext3 = React.createContext()
 
@@ -20,6 +23,7 @@ export default function Teamsettings() {
           }
       }
     }))
+    console.log('retrieving user teams')
     const teamItem = teamObject.data.listUserTeams.items
 
     for (let team of teamItem) {
@@ -28,6 +32,7 @@ export default function Teamsettings() {
             id: team.id
         }
       }))
+      console.log('deleting user team')
     }
 
     const del = await API.graphql(graphqlOperation(deleteTeamTest, {
@@ -37,23 +42,11 @@ export default function Teamsettings() {
     }))
     console.log('deleting team')
 
-  // Auth.currentAuthenticatedUser().then(async (user) => {
-  //   const fetchTeams = async () => {
-  //       const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
-  //           filter: {
-  //               userTestID: {
-  //                   eq: user.attributes.sub
-  //               }
-  //           }
-  //       }))
-  //       const teamItem = teamObject.data.listUserTeams.items
-  //       return teamItem
-        
-  //   }
-  //   fetchTeams().then(teams => setTeamList(teams))
-  // })
-  // console.log("updating teams")
-
+    root.render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    );
   }
 
   return (

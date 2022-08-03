@@ -23,10 +23,10 @@ function App({ signOut, user }) {
         <Sidebar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/teamPage/:id' element={<Teamtasks />} />
-          <Route path='/teamPage/tasks' element={<Teamtasks />} />
-          <Route path='/teamPage/members' element={<Teammembers />} />
-          <Route path='/teamPage/settings' element={<Teamsettings />} />
+          <Route path='/teamPage/:id/tasks' element={<Teamtasks />} />
+          <Route path='/teamPage/:id/tasks' element={<Teamtasks />} />
+          <Route path='/teamPage/:id/members' element={<Teammembers />} />
+          <Route path='/teamPage/:id/settings' element={<Teamsettings />} />
         </Routes>
       </div>
       <button onClick={signOut}>Sign out</button>

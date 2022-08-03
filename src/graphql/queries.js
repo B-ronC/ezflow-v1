@@ -30,6 +30,7 @@ export const getUserTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -51,6 +52,7 @@ export const listUserTests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -85,6 +87,7 @@ export const getTaskTest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       team {
         id
@@ -127,6 +130,7 @@ export const listTaskTests = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id
@@ -222,6 +226,7 @@ export const getUserTeams = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       teamTest {
         id
@@ -258,6 +263,7 @@ export const listUserTeams = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         teamTest {
           id
@@ -291,6 +297,7 @@ export const getUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       taskTest {
         id
@@ -305,6 +312,7 @@ export const getUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id
@@ -341,6 +349,7 @@ export const listUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         taskTest {
           id

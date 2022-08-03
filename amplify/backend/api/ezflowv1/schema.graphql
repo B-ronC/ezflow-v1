@@ -1,4 +1,6 @@
-type UserTest @model @auth(rules: [{ allow: private, operations: [read] }]) {
+type UserTest
+  @model
+  @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
   id: ID!
   name: String!
   teams: [TeamTest] @manyToMany(relationName: "UserTeams")
@@ -13,8 +15,8 @@ type TaskTest
   title: String!
   description: String!
   to: [UserTest] @manyToMany(relationName: "UserTasks")
-  from: UserTest! @hasOne
-  team: TeamTest! @hasOne
+  from: UserTest @hasOne
+  team: TeamTest @hasOne
 }
 
 type TeamTest

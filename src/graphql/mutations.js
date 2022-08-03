@@ -33,6 +33,7 @@ export const createUserTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -68,6 +69,7 @@ export const updateUserTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -103,6 +105,7 @@ export const deleteUserTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -138,6 +141,7 @@ export const createTaskTest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       team {
         id
@@ -192,6 +196,7 @@ export const updateTaskTest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       team {
         id
@@ -246,6 +251,7 @@ export const deleteTaskTest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       team {
         id
@@ -405,6 +411,7 @@ export const createUserTeams = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       teamTest {
         id
@@ -445,6 +452,7 @@ export const updateUserTeams = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       teamTest {
         id
@@ -485,6 +493,7 @@ export const deleteUserTeams = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       teamTest {
         id
@@ -525,6 +534,7 @@ export const createUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       taskTest {
         id
@@ -539,6 +549,7 @@ export const createUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id
@@ -579,6 +590,7 @@ export const updateUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       taskTest {
         id
@@ -593,6 +605,7 @@ export const updateUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id
@@ -633,6 +646,7 @@ export const deleteUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       taskTest {
         id
@@ -647,6 +661,7 @@ export const deleteUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id

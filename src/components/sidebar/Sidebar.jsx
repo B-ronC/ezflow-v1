@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify"
 import { listUserTeams } from "../../graphql/queries"
 import { createTeamTest, createUserTeams } from "../../graphql/mutations"
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Auth } from 'aws-amplify';
 
@@ -85,7 +85,7 @@ export default function Sidebar() {
                         
                         key={team.id}
                         >
-                            <Link to={`/teamPage/${team.teamTestID}`}>
+                            <Link to={`/teamPage/${team.teamTestID}/tasks`}>
                                 {team.teamTest.name}
                             </Link>
                         </ol>

@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateUserTest = /* GraphQL */ `
-  subscription OnCreateUserTest {
-    onCreateUserTest {
+  subscription OnCreateUserTest($owner: String) {
+    onCreateUserTest(owner: $owner) {
       id
       name
       teams {
@@ -30,12 +30,13 @@ export const onCreateUserTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateUserTest = /* GraphQL */ `
-  subscription OnUpdateUserTest {
-    onUpdateUserTest {
+  subscription OnUpdateUserTest($owner: String) {
+    onUpdateUserTest(owner: $owner) {
       id
       name
       teams {
@@ -62,12 +63,13 @@ export const onUpdateUserTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteUserTest = /* GraphQL */ `
-  subscription OnDeleteUserTest {
-    onDeleteUserTest {
+  subscription OnDeleteUserTest($owner: String) {
+    onDeleteUserTest(owner: $owner) {
       id
       name
       teams {
@@ -94,6 +96,7 @@ export const onDeleteUserTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -126,6 +129,7 @@ export const onCreateTaskTest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       team {
         id
@@ -177,6 +181,7 @@ export const onUpdateTaskTest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       team {
         id
@@ -228,6 +233,7 @@ export const onDeleteTaskTest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       team {
         id
@@ -375,6 +381,7 @@ export const onCreateUserTeams = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       teamTest {
         id
@@ -412,6 +419,7 @@ export const onUpdateUserTeams = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       teamTest {
         id
@@ -449,6 +457,7 @@ export const onDeleteUserTeams = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       teamTest {
         id
@@ -486,6 +495,7 @@ export const onCreateUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       taskTest {
         id
@@ -500,6 +510,7 @@ export const onCreateUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id
@@ -537,6 +548,7 @@ export const onUpdateUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       taskTest {
         id
@@ -551,6 +563,7 @@ export const onUpdateUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id
@@ -588,6 +601,7 @@ export const onDeleteUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       taskTest {
         id
@@ -602,6 +616,7 @@ export const onDeleteUserTasks = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
         }
         team {
           id

@@ -2,10 +2,14 @@ import "./sidebar.css";
 import { Link } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify"
 import { listUserTeams } from "../../graphql/queries"
-import { createTeamTest, createUserTeams } from "../../graphql/mutations"
+import { createTeam, createUserTeams } from "../../graphql/mutations"
 import React, { useEffect, useState } from 'react';
 
 import { Auth } from 'aws-amplify';
+
+import { root } from '../..'
+import App from '../../App'
+import { BrowserRouter } from 'react-router-dom';
 
 export default function Sidebar() {
     // state
@@ -17,7 +21,7 @@ export default function Sidebar() {
             const fetchTeams = async () => {
                 const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
                     filter: {
-                        userTestID: {
+                        userID: {
                             eq: user.attributes.sub
                         }
                     }
@@ -41,7 +45,7 @@ export default function Sidebar() {
     const createNewTeam = async () => {
         Auth.currentAuthenticatedUser().then(async (user) => {
             const name = prompt('Enter Team Name')
-            const newTeam = await API.graphql(graphqlOperation(createTeamTest, {
+            const newTeam = await API.graphql(graphqlOperation(createTeam, {
             input: {
                 name
             }
@@ -49,17 +53,22 @@ export default function Sidebar() {
             console.log("creating team")
 
             const userID = user.attributes.sub
-            const teamID = newTeam.data.createTeamTest.id
+            const teamID = newTeam.data.createTeam.id
     
             const newMyTeam = await API.graphql(graphqlOperation(createUserTeams, {
                 input: {
-                    userTestID: userID,
-                    teamTestID: teamID
+                    userID: userID,
+                    teamID: teamID
                 }
             }))
 
             console.log("creating myTeam")
-            updateTeams()
+            //updateTeams()
+            root.render(
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            );
         })
     }
 
@@ -85,8 +94,8 @@ export default function Sidebar() {
                         
                         key={team.id}
                         >
-                            <Link to={`/teamPage/${team.teamTestID}/tasks`}>
-                                {team.teamTest.name}
+                            <Link to={`/teamPage/${team.teamID}/tasks`}>
+                                {team.team.name}
                             </Link>
                         </ol>
                     ))}

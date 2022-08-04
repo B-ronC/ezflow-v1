@@ -1,16 +1,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUserTest = /* GraphQL */ `
-  query GetUserTest($id: ID!) {
-    getUserTest(id: $id) {
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
       id
       name
       teams {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -20,8 +20,8 @@ export const getUserTest = /* GraphQL */ `
       tasks {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -34,13 +34,13 @@ export const getUserTest = /* GraphQL */ `
     }
   }
 `;
-export const listUserTests = /* GraphQL */ `
-  query ListUserTests(
-    $filter: ModelUserTestFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listUserTests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -58,9 +58,9 @@ export const listUserTests = /* GraphQL */ `
     }
   }
 `;
-export const getTaskTest = /* GraphQL */ `
-  query GetTaskTest($id: ID!) {
-    getTaskTest(id: $id) {
+export const getTask = /* GraphQL */ `
+  query GetTask($id: ID!) {
+    getTask(id: $id) {
       id
       teamID
       title
@@ -68,8 +68,8 @@ export const getTaskTest = /* GraphQL */ `
       to {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -104,19 +104,19 @@ export const getTaskTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      taskTestFromId
-      taskTestTeamId
+      taskFromId
+      taskTeamId
       owner
     }
   }
 `;
-export const listTaskTests = /* GraphQL */ `
-  query ListTaskTests(
-    $filter: ModelTaskTestFilterInput
+export const listTasks = /* GraphQL */ `
+  query ListTasks(
+    $filter: ModelTaskFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTaskTests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         teamID
@@ -141,24 +141,24 @@ export const listTaskTests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       nextToken
     }
   }
 `;
-export const getTeamTest = /* GraphQL */ `
-  query GetTeamTest($id: ID!) {
-    getTeamTest(id: $id) {
+export const getTeam = /* GraphQL */ `
+  query GetTeam($id: ID!) {
+    getTeam(id: $id) {
       id
       name
       members {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -173,8 +173,8 @@ export const getTeamTest = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         nextToken
@@ -185,13 +185,13 @@ export const getTeamTest = /* GraphQL */ `
     }
   }
 `;
-export const listTeamTests = /* GraphQL */ `
-  query ListTeamTests(
-    $filter: ModelTeamTestFilterInput
+export const listTeams = /* GraphQL */ `
+  query ListTeams(
+    $filter: ModelTeamFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTeamTests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -213,9 +213,9 @@ export const getUserTeams = /* GraphQL */ `
   query GetUserTeams($id: ID!) {
     getUserTeams(id: $id) {
       id
-      userTestID
-      teamTestID
-      userTest {
+      userID
+      teamID
+      user {
         id
         name
         teams {
@@ -228,7 +228,7 @@ export const getUserTeams = /* GraphQL */ `
         updatedAt
         owner
       }
-      teamTest {
+      team {
         id
         name
         members {
@@ -256,16 +256,16 @@ export const listUserTeams = /* GraphQL */ `
     listUserTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userTestID
-        teamTestID
-        userTest {
+        userID
+        teamID
+        user {
           id
           name
           createdAt
           updatedAt
           owner
         }
-        teamTest {
+        team {
           id
           name
           createdAt
@@ -284,9 +284,9 @@ export const getUserTasks = /* GraphQL */ `
   query GetUserTasks($id: ID!) {
     getUserTasks(id: $id) {
       id
-      userTestID
-      taskTestID
-      userTest {
+      userID
+      taskID
+      user {
         id
         name
         teams {
@@ -299,7 +299,7 @@ export const getUserTasks = /* GraphQL */ `
         updatedAt
         owner
       }
-      taskTest {
+      task {
         id
         teamID
         title
@@ -323,8 +323,8 @@ export const getUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       createdAt
@@ -342,24 +342,24 @@ export const listUserTasks = /* GraphQL */ `
     listUserTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userTestID
-        taskTestID
-        userTest {
+        userID
+        taskID
+        user {
           id
           name
           createdAt
           updatedAt
           owner
         }
-        taskTest {
+        task {
           id
           teamID
           title
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         createdAt

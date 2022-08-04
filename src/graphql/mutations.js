@@ -1,19 +1,19 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createUserTest = /* GraphQL */ `
-  mutation CreateUserTest(
-    $input: CreateUserTestInput!
-    $condition: ModelUserTestConditionInput
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    createUserTest(input: $input, condition: $condition) {
+    createUser(input: $input, condition: $condition) {
       id
       name
       teams {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -23,8 +23,8 @@ export const createUserTest = /* GraphQL */ `
       tasks {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -37,19 +37,19 @@ export const createUserTest = /* GraphQL */ `
     }
   }
 `;
-export const updateUserTest = /* GraphQL */ `
-  mutation UpdateUserTest(
-    $input: UpdateUserTestInput!
-    $condition: ModelUserTestConditionInput
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    updateUserTest(input: $input, condition: $condition) {
+    updateUser(input: $input, condition: $condition) {
       id
       name
       teams {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -59,8 +59,8 @@ export const updateUserTest = /* GraphQL */ `
       tasks {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -73,19 +73,19 @@ export const updateUserTest = /* GraphQL */ `
     }
   }
 `;
-export const deleteUserTest = /* GraphQL */ `
-  mutation DeleteUserTest(
-    $input: DeleteUserTestInput!
-    $condition: ModelUserTestConditionInput
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    deleteUserTest(input: $input, condition: $condition) {
+    deleteUser(input: $input, condition: $condition) {
       id
       name
       teams {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -95,8 +95,8 @@ export const deleteUserTest = /* GraphQL */ `
       tasks {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -109,12 +109,12 @@ export const deleteUserTest = /* GraphQL */ `
     }
   }
 `;
-export const createTaskTest = /* GraphQL */ `
-  mutation CreateTaskTest(
-    $input: CreateTaskTestInput!
-    $condition: ModelTaskTestConditionInput
+export const createTask = /* GraphQL */ `
+  mutation CreateTask(
+    $input: CreateTaskInput!
+    $condition: ModelTaskConditionInput
   ) {
-    createTaskTest(input: $input, condition: $condition) {
+    createTask(input: $input, condition: $condition) {
       id
       teamID
       title
@@ -122,8 +122,8 @@ export const createTaskTest = /* GraphQL */ `
       to {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -158,18 +158,18 @@ export const createTaskTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      taskTestFromId
-      taskTestTeamId
+      taskFromId
+      taskTeamId
       owner
     }
   }
 `;
-export const updateTaskTest = /* GraphQL */ `
-  mutation UpdateTaskTest(
-    $input: UpdateTaskTestInput!
-    $condition: ModelTaskTestConditionInput
+export const updateTask = /* GraphQL */ `
+  mutation UpdateTask(
+    $input: UpdateTaskInput!
+    $condition: ModelTaskConditionInput
   ) {
-    updateTaskTest(input: $input, condition: $condition) {
+    updateTask(input: $input, condition: $condition) {
       id
       teamID
       title
@@ -177,8 +177,8 @@ export const updateTaskTest = /* GraphQL */ `
       to {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -213,18 +213,18 @@ export const updateTaskTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      taskTestFromId
-      taskTestTeamId
+      taskFromId
+      taskTeamId
       owner
     }
   }
 `;
-export const deleteTaskTest = /* GraphQL */ `
-  mutation DeleteTaskTest(
-    $input: DeleteTaskTestInput!
-    $condition: ModelTaskTestConditionInput
+export const deleteTask = /* GraphQL */ `
+  mutation DeleteTask(
+    $input: DeleteTaskInput!
+    $condition: ModelTaskConditionInput
   ) {
-    deleteTaskTest(input: $input, condition: $condition) {
+    deleteTask(input: $input, condition: $condition) {
       id
       teamID
       title
@@ -232,8 +232,8 @@ export const deleteTaskTest = /* GraphQL */ `
       to {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -268,25 +268,25 @@ export const deleteTaskTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      taskTestFromId
-      taskTestTeamId
+      taskFromId
+      taskTeamId
       owner
     }
   }
 `;
-export const createTeamTest = /* GraphQL */ `
-  mutation CreateTeamTest(
-    $input: CreateTeamTestInput!
-    $condition: ModelTeamTestConditionInput
+export const createTeam = /* GraphQL */ `
+  mutation CreateTeam(
+    $input: CreateTeamInput!
+    $condition: ModelTeamConditionInput
   ) {
-    createTeamTest(input: $input, condition: $condition) {
+    createTeam(input: $input, condition: $condition) {
       id
       name
       members {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -301,8 +301,8 @@ export const createTeamTest = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         nextToken
@@ -313,19 +313,19 @@ export const createTeamTest = /* GraphQL */ `
     }
   }
 `;
-export const updateTeamTest = /* GraphQL */ `
-  mutation UpdateTeamTest(
-    $input: UpdateTeamTestInput!
-    $condition: ModelTeamTestConditionInput
+export const updateTeam = /* GraphQL */ `
+  mutation UpdateTeam(
+    $input: UpdateTeamInput!
+    $condition: ModelTeamConditionInput
   ) {
-    updateTeamTest(input: $input, condition: $condition) {
+    updateTeam(input: $input, condition: $condition) {
       id
       name
       members {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -340,8 +340,8 @@ export const updateTeamTest = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         nextToken
@@ -352,19 +352,19 @@ export const updateTeamTest = /* GraphQL */ `
     }
   }
 `;
-export const deleteTeamTest = /* GraphQL */ `
-  mutation DeleteTeamTest(
-    $input: DeleteTeamTestInput!
-    $condition: ModelTeamTestConditionInput
+export const deleteTeam = /* GraphQL */ `
+  mutation DeleteTeam(
+    $input: DeleteTeamInput!
+    $condition: ModelTeamConditionInput
   ) {
-    deleteTeamTest(input: $input, condition: $condition) {
+    deleteTeam(input: $input, condition: $condition) {
       id
       name
       members {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -379,8 +379,8 @@ export const deleteTeamTest = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         nextToken
@@ -398,9 +398,9 @@ export const createUserTeams = /* GraphQL */ `
   ) {
     createUserTeams(input: $input, condition: $condition) {
       id
-      userTestID
-      teamTestID
-      userTest {
+      userID
+      teamID
+      user {
         id
         name
         teams {
@@ -413,7 +413,7 @@ export const createUserTeams = /* GraphQL */ `
         updatedAt
         owner
       }
-      teamTest {
+      team {
         id
         name
         members {
@@ -439,9 +439,9 @@ export const updateUserTeams = /* GraphQL */ `
   ) {
     updateUserTeams(input: $input, condition: $condition) {
       id
-      userTestID
-      teamTestID
-      userTest {
+      userID
+      teamID
+      user {
         id
         name
         teams {
@@ -454,7 +454,7 @@ export const updateUserTeams = /* GraphQL */ `
         updatedAt
         owner
       }
-      teamTest {
+      team {
         id
         name
         members {
@@ -480,9 +480,9 @@ export const deleteUserTeams = /* GraphQL */ `
   ) {
     deleteUserTeams(input: $input, condition: $condition) {
       id
-      userTestID
-      teamTestID
-      userTest {
+      userID
+      teamID
+      user {
         id
         name
         teams {
@@ -495,7 +495,7 @@ export const deleteUserTeams = /* GraphQL */ `
         updatedAt
         owner
       }
-      teamTest {
+      team {
         id
         name
         members {
@@ -521,9 +521,9 @@ export const createUserTasks = /* GraphQL */ `
   ) {
     createUserTasks(input: $input, condition: $condition) {
       id
-      userTestID
-      taskTestID
-      userTest {
+      userID
+      taskID
+      user {
         id
         name
         teams {
@@ -536,7 +536,7 @@ export const createUserTasks = /* GraphQL */ `
         updatedAt
         owner
       }
-      taskTest {
+      task {
         id
         teamID
         title
@@ -560,8 +560,8 @@ export const createUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       createdAt
@@ -577,9 +577,9 @@ export const updateUserTasks = /* GraphQL */ `
   ) {
     updateUserTasks(input: $input, condition: $condition) {
       id
-      userTestID
-      taskTestID
-      userTest {
+      userID
+      taskID
+      user {
         id
         name
         teams {
@@ -592,7 +592,7 @@ export const updateUserTasks = /* GraphQL */ `
         updatedAt
         owner
       }
-      taskTest {
+      task {
         id
         teamID
         title
@@ -616,8 +616,8 @@ export const updateUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       createdAt
@@ -633,9 +633,9 @@ export const deleteUserTasks = /* GraphQL */ `
   ) {
     deleteUserTasks(input: $input, condition: $condition) {
       id
-      userTestID
-      taskTestID
-      userTest {
+      userID
+      taskID
+      user {
         id
         name
         teams {
@@ -648,7 +648,7 @@ export const deleteUserTasks = /* GraphQL */ `
         updatedAt
         owner
       }
-      taskTest {
+      task {
         id
         teamID
         title
@@ -672,8 +672,8 @@ export const deleteUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       createdAt

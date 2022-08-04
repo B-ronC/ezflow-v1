@@ -4,21 +4,21 @@ import Teamnavbar from '../../components/teamnavbar/Teamnavbar'
 import { Link, useParams } from 'react-router-dom'
 import { API, graphqlOperation } from "aws-amplify"
 import { listUserTeams } from "../../graphql/queries"
-import { deleteTeamTest, deleteUserTeams } from "../../graphql/mutations"
+import { deleteTeam, deleteUserTeams } from "../../graphql/mutations"
 
 import { root } from '../..'
 import App from '../../App'
 import { BrowserRouter } from 'react-router-dom';
 
-export const idContext3 = React.createContext()
+export const idContextSet = React.createContext()
 
 export default function Teamsettings() {
   const { id } = useParams()
 
-  const deleteTeam = async () => {
+  const deleteTeamF = async () => {
     const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
       filter: {
-          teamTestID: {
+          teamID: {
               eq: id
           }
       }
@@ -35,7 +35,7 @@ export default function Teamsettings() {
       console.log('deleting user team')
     }
 
-    const del = await API.graphql(graphqlOperation(deleteTeamTest, {
+    const del = await API.graphql(graphqlOperation(deleteTeam, {
       input: {
           id
       }
@@ -51,11 +51,11 @@ export default function Teamsettings() {
 
   return (
     <div className='Teamsettings'>
-      <idContext3.Provider value={id}>
+      <idContextSet.Provider value={id}>
         <Teamnavbar />
-      </idContext3.Provider>
+      </idContextSet.Provider>
       <Link to={'/'}>
-        <button onClick={deleteTeam}>Delete Team</button>
+        <button onClick={deleteTeamF}>Delete Team</button>
       </Link>
       </div>
   )

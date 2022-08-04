@@ -1,24 +1,23 @@
 import "./teamnavbar.css"
 import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
-import { idContext1 } from "../../pages/teamtasks/Teamtasks";
-import { idContext2 } from "../../pages/teammembers/Teammembers";
-import { idContext3 } from "../../pages/teamsettings/Teamsettings"; 
+import { idContextTask } from "../../pages/teamtasks/Teamtasks";
+import { idContextMem } from "../../pages/teammembers/Teammembers";
+import { idContextSet } from "../../pages/teamsettings/Teamsettings"; 
 
 export default function Teamnavbar() {
-    const id1 = useContext(idContext1)
-    const id2 = useContext(idContext2)
-    const id3 = useContext(idContext3)
+    const idTask = useContext(idContextTask)
+    const idMem = useContext(idContextMem)
+    const idSet = useContext(idContextSet)
 
     let id
-    if (id1 !== undefined) {
-        id = id1
-    } else if (id2 !== undefined) {
-        id = id2
+    if (idTask !== undefined) {
+        id = idTask
+    } else if (idMem !== undefined) {
+        id = idMem
     } else {
-        id = id3
+        id = idSet
     }
-    
 
     return (
         <nav className='nav'>

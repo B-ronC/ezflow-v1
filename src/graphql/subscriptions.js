@@ -1,16 +1,19 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateUserTest = /* GraphQL */ `
-  subscription OnCreateUserTest($owner: String) {
-    onCreateUserTest(owner: $owner) {
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser(
+    $filter: ModelSubscriptionUserFilterInput
+    $owner: String
+  ) {
+    onCreateUser(filter: $filter, owner: $owner) {
       id
       name
       teams {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -20,8 +23,8 @@ export const onCreateUserTest = /* GraphQL */ `
       tasks {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -34,16 +37,19 @@ export const onCreateUserTest = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUserTest = /* GraphQL */ `
-  subscription OnUpdateUserTest($owner: String) {
-    onUpdateUserTest(owner: $owner) {
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser(
+    $filter: ModelSubscriptionUserFilterInput
+    $owner: String
+  ) {
+    onUpdateUser(filter: $filter, owner: $owner) {
       id
       name
       teams {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -53,8 +59,8 @@ export const onUpdateUserTest = /* GraphQL */ `
       tasks {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -67,16 +73,19 @@ export const onUpdateUserTest = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUserTest = /* GraphQL */ `
-  subscription OnDeleteUserTest($owner: String) {
-    onDeleteUserTest(owner: $owner) {
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser(
+    $filter: ModelSubscriptionUserFilterInput
+    $owner: String
+  ) {
+    onDeleteUser(filter: $filter, owner: $owner) {
       id
       name
       teams {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -86,8 +95,8 @@ export const onDeleteUserTest = /* GraphQL */ `
       tasks {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -100,9 +109,12 @@ export const onDeleteUserTest = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTaskTest = /* GraphQL */ `
-  subscription OnCreateTaskTest($owner: String) {
-    onCreateTaskTest(owner: $owner) {
+export const onCreateTask = /* GraphQL */ `
+  subscription OnCreateTask(
+    $filter: ModelSubscriptionTaskFilterInput
+    $owner: String
+  ) {
+    onCreateTask(filter: $filter, owner: $owner) {
       id
       teamID
       title
@@ -110,8 +122,8 @@ export const onCreateTaskTest = /* GraphQL */ `
       to {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -146,15 +158,18 @@ export const onCreateTaskTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      taskTestFromId
-      taskTestTeamId
+      taskFromId
+      taskTeamId
       owner
     }
   }
 `;
-export const onUpdateTaskTest = /* GraphQL */ `
-  subscription OnUpdateTaskTest($owner: String) {
-    onUpdateTaskTest(owner: $owner) {
+export const onUpdateTask = /* GraphQL */ `
+  subscription OnUpdateTask(
+    $filter: ModelSubscriptionTaskFilterInput
+    $owner: String
+  ) {
+    onUpdateTask(filter: $filter, owner: $owner) {
       id
       teamID
       title
@@ -162,8 +177,8 @@ export const onUpdateTaskTest = /* GraphQL */ `
       to {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -198,15 +213,18 @@ export const onUpdateTaskTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      taskTestFromId
-      taskTestTeamId
+      taskFromId
+      taskTeamId
       owner
     }
   }
 `;
-export const onDeleteTaskTest = /* GraphQL */ `
-  subscription OnDeleteTaskTest($owner: String) {
-    onDeleteTaskTest(owner: $owner) {
+export const onDeleteTask = /* GraphQL */ `
+  subscription OnDeleteTask(
+    $filter: ModelSubscriptionTaskFilterInput
+    $owner: String
+  ) {
+    onDeleteTask(filter: $filter, owner: $owner) {
       id
       teamID
       title
@@ -214,8 +232,8 @@ export const onDeleteTaskTest = /* GraphQL */ `
       to {
         items {
           id
-          userTestID
-          taskTestID
+          userID
+          taskID
           createdAt
           updatedAt
           owner
@@ -250,22 +268,25 @@ export const onDeleteTaskTest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      taskTestFromId
-      taskTestTeamId
+      taskFromId
+      taskTeamId
       owner
     }
   }
 `;
-export const onCreateTeamTest = /* GraphQL */ `
-  subscription OnCreateTeamTest($owner: String) {
-    onCreateTeamTest(owner: $owner) {
+export const onCreateTeam = /* GraphQL */ `
+  subscription OnCreateTeam(
+    $filter: ModelSubscriptionTeamFilterInput
+    $owner: String
+  ) {
+    onCreateTeam(filter: $filter, owner: $owner) {
       id
       name
       members {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -280,8 +301,8 @@ export const onCreateTeamTest = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         nextToken
@@ -292,16 +313,19 @@ export const onCreateTeamTest = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTeamTest = /* GraphQL */ `
-  subscription OnUpdateTeamTest($owner: String) {
-    onUpdateTeamTest(owner: $owner) {
+export const onUpdateTeam = /* GraphQL */ `
+  subscription OnUpdateTeam(
+    $filter: ModelSubscriptionTeamFilterInput
+    $owner: String
+  ) {
+    onUpdateTeam(filter: $filter, owner: $owner) {
       id
       name
       members {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -316,8 +340,8 @@ export const onUpdateTeamTest = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         nextToken
@@ -328,16 +352,19 @@ export const onUpdateTeamTest = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTeamTest = /* GraphQL */ `
-  subscription OnDeleteTeamTest($owner: String) {
-    onDeleteTeamTest(owner: $owner) {
+export const onDeleteTeam = /* GraphQL */ `
+  subscription OnDeleteTeam(
+    $filter: ModelSubscriptionTeamFilterInput
+    $owner: String
+  ) {
+    onDeleteTeam(filter: $filter, owner: $owner) {
       id
       name
       members {
         items {
           id
-          userTestID
-          teamTestID
+          userID
+          teamID
           createdAt
           updatedAt
           owner
@@ -352,8 +379,8 @@ export const onDeleteTeamTest = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          taskTestFromId
-          taskTestTeamId
+          taskFromId
+          taskTeamId
           owner
         }
         nextToken
@@ -365,12 +392,15 @@ export const onDeleteTeamTest = /* GraphQL */ `
   }
 `;
 export const onCreateUserTeams = /* GraphQL */ `
-  subscription OnCreateUserTeams($owner: String) {
-    onCreateUserTeams(owner: $owner) {
+  subscription OnCreateUserTeams(
+    $filter: ModelSubscriptionUserTeamsFilterInput
+    $owner: String
+  ) {
+    onCreateUserTeams(filter: $filter, owner: $owner) {
       id
-      userTestID
-      teamTestID
-      userTest {
+      userID
+      teamID
+      user {
         id
         name
         teams {
@@ -383,7 +413,7 @@ export const onCreateUserTeams = /* GraphQL */ `
         updatedAt
         owner
       }
-      teamTest {
+      team {
         id
         name
         members {
@@ -403,12 +433,15 @@ export const onCreateUserTeams = /* GraphQL */ `
   }
 `;
 export const onUpdateUserTeams = /* GraphQL */ `
-  subscription OnUpdateUserTeams($owner: String) {
-    onUpdateUserTeams(owner: $owner) {
+  subscription OnUpdateUserTeams(
+    $filter: ModelSubscriptionUserTeamsFilterInput
+    $owner: String
+  ) {
+    onUpdateUserTeams(filter: $filter, owner: $owner) {
       id
-      userTestID
-      teamTestID
-      userTest {
+      userID
+      teamID
+      user {
         id
         name
         teams {
@@ -421,7 +454,7 @@ export const onUpdateUserTeams = /* GraphQL */ `
         updatedAt
         owner
       }
-      teamTest {
+      team {
         id
         name
         members {
@@ -441,12 +474,15 @@ export const onUpdateUserTeams = /* GraphQL */ `
   }
 `;
 export const onDeleteUserTeams = /* GraphQL */ `
-  subscription OnDeleteUserTeams($owner: String) {
-    onDeleteUserTeams(owner: $owner) {
+  subscription OnDeleteUserTeams(
+    $filter: ModelSubscriptionUserTeamsFilterInput
+    $owner: String
+  ) {
+    onDeleteUserTeams(filter: $filter, owner: $owner) {
       id
-      userTestID
-      teamTestID
-      userTest {
+      userID
+      teamID
+      user {
         id
         name
         teams {
@@ -459,7 +495,7 @@ export const onDeleteUserTeams = /* GraphQL */ `
         updatedAt
         owner
       }
-      teamTest {
+      team {
         id
         name
         members {
@@ -479,12 +515,15 @@ export const onDeleteUserTeams = /* GraphQL */ `
   }
 `;
 export const onCreateUserTasks = /* GraphQL */ `
-  subscription OnCreateUserTasks($owner: String) {
-    onCreateUserTasks(owner: $owner) {
+  subscription OnCreateUserTasks(
+    $filter: ModelSubscriptionUserTasksFilterInput
+    $owner: String
+  ) {
+    onCreateUserTasks(filter: $filter, owner: $owner) {
       id
-      userTestID
-      taskTestID
-      userTest {
+      userID
+      taskID
+      user {
         id
         name
         teams {
@@ -497,7 +536,7 @@ export const onCreateUserTasks = /* GraphQL */ `
         updatedAt
         owner
       }
-      taskTest {
+      task {
         id
         teamID
         title
@@ -521,8 +560,8 @@ export const onCreateUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       createdAt
@@ -532,12 +571,15 @@ export const onCreateUserTasks = /* GraphQL */ `
   }
 `;
 export const onUpdateUserTasks = /* GraphQL */ `
-  subscription OnUpdateUserTasks($owner: String) {
-    onUpdateUserTasks(owner: $owner) {
+  subscription OnUpdateUserTasks(
+    $filter: ModelSubscriptionUserTasksFilterInput
+    $owner: String
+  ) {
+    onUpdateUserTasks(filter: $filter, owner: $owner) {
       id
-      userTestID
-      taskTestID
-      userTest {
+      userID
+      taskID
+      user {
         id
         name
         teams {
@@ -550,7 +592,7 @@ export const onUpdateUserTasks = /* GraphQL */ `
         updatedAt
         owner
       }
-      taskTest {
+      task {
         id
         teamID
         title
@@ -574,8 +616,8 @@ export const onUpdateUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       createdAt
@@ -585,12 +627,15 @@ export const onUpdateUserTasks = /* GraphQL */ `
   }
 `;
 export const onDeleteUserTasks = /* GraphQL */ `
-  subscription OnDeleteUserTasks($owner: String) {
-    onDeleteUserTasks(owner: $owner) {
+  subscription OnDeleteUserTasks(
+    $filter: ModelSubscriptionUserTasksFilterInput
+    $owner: String
+  ) {
+    onDeleteUserTasks(filter: $filter, owner: $owner) {
       id
-      userTestID
-      taskTestID
-      userTest {
+      userID
+      taskID
+      user {
         id
         name
         teams {
@@ -603,7 +648,7 @@ export const onDeleteUserTasks = /* GraphQL */ `
         updatedAt
         owner
       }
-      taskTest {
+      task {
         id
         teamID
         title
@@ -627,8 +672,8 @@ export const onDeleteUserTasks = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        taskTestFromId
-        taskTestTeamId
+        taskFromId
+        taskTeamId
         owner
       }
       createdAt

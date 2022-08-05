@@ -1,19 +1,24 @@
-import React, {useContext} from 'react'
-import { idContextMem } from "../../pages/teammembers/Teammembers";
-import { API, graphqlOperation } from "aws-amplify"
-import { createUserTeams } from "../../graphql/mutations"
+import React, {useContext} from 'react';
+import { idContextMem } from '../../pages/teammembers/Teammembers';
+import { API, graphqlOperation } from 'aws-amplify';
+import { createUserTeams } from '../../graphql/mutations';
 
-export default function User({user}) {
+function User({user}) {
     const idMem = useContext(idContextMem)
 
+    // adds user to current team on button click
     const addUser = async () => {
-        const add = await API.graphql(graphqlOperation(createUserTeams, {
-            input: {
-                userID: user.id,
-                teamID: idMem
-            }
-        }))
-        console.log('added user')
+        try {
+            const add = await API.graphql(graphqlOperation(createUserTeams, {
+                input: {
+                    userID: user.id,
+                    teamID: idMem
+                }
+            }))
+            console.log('added user')
+        } catch (err) {
+            console.error(err)
+        }
     }
 
   return (
@@ -24,3 +29,5 @@ export default function User({user}) {
     </div>
   )
 }
+
+export default User

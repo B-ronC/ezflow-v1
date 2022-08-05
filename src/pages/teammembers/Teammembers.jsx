@@ -1,45 +1,56 @@
-import './teammembers.css'
-import React, { useState, useEffect } from 'react'
-import Teamnavbar from '../../components/teamnavbar/Teamnavbar'
-import Searchbar from '../../components/searchbar/Searchbar' 
+import './teammembers.css';
+import React, { useState, useEffect } from 'react';
+import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
+import Searchbar from '../../components/searchbar/Searchbar';
 
-import { API, graphqlOperation } from "aws-amplify"
-import { useParams } from 'react-router-dom'
-import { listUsers, listUserTeams } from "../../graphql/queries"
+import { API, graphqlOperation } from 'aws-amplify';
+import { useParams } from 'react-router-dom';
+import { listUsers, listUserTeams } from '../../graphql/queries';
 
 export const idContextMem = React.createContext()
 
-export default function Teammembers() {
+function Teammembers() {
   const { id } = useParams()
 
   const [userList, setUserList] = useState([]) 
   const [memberList, setMemberList] = useState([]) 
 
+  // fetches user list for search bar
   function updateUsers() {
-    const fetchUsers = async () => {
-      const UserObjectList = await API.graphql(graphqlOperation(listUsers))
-      console.log('retrieving users')
-      const UserItemList = UserObjectList.data.listUsers.items
-  
-      return UserItemList
+    try {
+      const fetchUsers = async () => {
+        const UserObjectList = await API.graphql(graphqlOperation(listUsers))
+        console.log('fetching users')
+        const UserItemList = UserObjectList.data.listUsers.items
+    
+        return UserItemList
+      }
+      fetchUsers().then(users => setUserList(users))
+    } catch (err) {
+      console.error(err)
     }
-    fetchUsers().then(users => setUserList(users))
   }
 
+  // updates member list for members page
   function updateMembers() {
-    const fetchUsers = async () => {
-      const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
-        filter: {
-            teamID: {
-                eq: id
-            }
-        }
-      }))
-      console.log('retrieving members')
-      const teamItem = teamObject.data.listUserTeams.items
-      return teamItem
+    try {
+      const fetchUsers = async () => {
+        const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
+          filter: {
+              teamID: {
+                  eq: id
+              }
+          }
+        }))
+        console.log('fetching members')
+        const teamItem = teamObject.data.listUserTeams.items
+        
+        return teamItem
+      }
+      fetchUsers().then(users => setMemberList(users))
+    } catch (err) {
+      console.error(err)
     }
-    fetchUsers().then(users => setMemberList(users))
   }
 
   useEffect(() => {
@@ -51,7 +62,7 @@ export default function Teammembers() {
     <div className='Teammembers'>
       <idContextMem.Provider value={id}>
         <Teamnavbar />
-        <Searchbar placeholder={"Search user..."} data={userList}/>
+        <Searchbar placeholder={'Search user...'} data={userList}/>
       </idContextMem.Provider>
       <h3>Members:</h3>
       {memberList.sort(function(a, b){
@@ -66,3 +77,5 @@ export default function Teammembers() {
     </div>
   )
 }
+
+export default Teammembers

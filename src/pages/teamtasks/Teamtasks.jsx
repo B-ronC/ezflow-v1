@@ -1,11 +1,11 @@
-import './teamtasks.css'
-import React from 'react'
-import Teamnavbar from '../../components/teamnavbar/Teamnavbar'
-import { useParams } from 'react-router-dom'
+import './teamtasks.css';
+import React from 'react';
+import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
+import { useParams } from 'react-router-dom';
 
 export const idContextTask = React.createContext()
 
-export default function Teamtasks() {
+function Teamtasks() {
   const { id } = useParams()
 
   return (
@@ -13,7 +13,9 @@ export default function Teamtasks() {
       <idContextTask.Provider value={ id }>
         <Teamnavbar />
       </idContextTask.Provider>
-      <h3>Teamtasks</h3>
+      <h3>Team Tasks</h3>
     </div>
   )
 }
+
+export default Teamtasks

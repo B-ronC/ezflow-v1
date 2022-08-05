@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
 import './searchbar.css';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import User from '../user/User';
 
 function Searchbar({ placeholder, data }) {
     const [filteredData, setFilteredData] = useState([])
 
+    // filters user names with search word
     const handleFilter = (event) => {
         const searchWord = event.target.value
-        const newFilter = data.filter((value) => {
+        const newFilter = data?.filter((value) => {
             return value.name.toLowerCase().includes(searchWord.toLowerCase())
         })
-        if (searchWord === "") {
+        if (searchWord === '') {
             setFilteredData([])
         } else {
             setFilteredData(newFilter)

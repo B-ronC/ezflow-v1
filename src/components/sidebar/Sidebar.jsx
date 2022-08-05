@@ -1,19 +1,19 @@
-import "./sidebar.css";
-import { Link } from "react-router-dom";
-import { API, graphqlOperation } from "aws-amplify"
-import { listUserTeams } from "../../graphql/queries"
-import { createTeam, createUserTeams } from "../../graphql/mutations"
+import './sidebar.css';
+import { Link } from 'react-router-dom';
+import { API, graphqlOperation } from 'aws-amplify';
+import { listUserTeams } from '../../graphql/queries';
+import { createTeam, createUserTeams } from '../../graphql/mutations';
 import React, { useEffect, useState } from 'react';
 
-import { Auth } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
-export default function Sidebar() {
+function Sidebar({user}) {
     // state
     const [teamList, setTeamList] = useState([])  
 
     // updates teamList
     function updateTeams() {
-        Auth.currentAuthenticatedUser().then(async (user) => {
+        try {
             const fetchTeams = async () => {
                 const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
                     filter: {
@@ -22,12 +22,15 @@ export default function Sidebar() {
                         }
                     }
                 }))
+                console.log('updating teams')
                 const teamItem = teamObject.data.listUserTeams.items
+
                 return teamItem
             }
             fetchTeams().then(teams => setTeamList(teams))
-        })
-        console.log("updating teams")
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     // update teamList on render
@@ -35,17 +38,16 @@ export default function Sidebar() {
         updateTeams()
     }, [])
     
-
     // creates team
     const createNewTeam = async () => {
-        Auth.currentAuthenticatedUser().then(async (user) => {
+        try {
             const name = prompt('Enter Team Name')
             const newTeam = await API.graphql(graphqlOperation(createTeam, {
             input: {
                 name
             }
             }))
-            console.log("creating team")
+            console.log('creating team')
 
             const userID = user.attributes.sub
             const teamID = newTeam.data.createTeam.id
@@ -56,42 +58,45 @@ export default function Sidebar() {
                     teamID: teamID
                 }
             }))
+            console.log('creating myTeam')
 
-            console.log("creating myTeam")
-            updateTeams()
-        })
+            updateTeams() 
+        } catch (err) {
+            console.error(err)
+        }
     }
 
-  return (
-    <div className="sidebar">
-        <div className="sidebarWrapper">
-            <div className="sidebarMenu">
-                <button className="createTitle" onClick={createNewTeam}>Create Team</button>
-                <main>
-                    {teamList.sort((a, b) => {
-                    let fa = a.createdAt.toLowerCase(),
-                        fb = b.createdAt.toLowerCase();
+    return (
+        <div className='sidebar'>
+            <div className='sidebarWrapper'>
+                <div className='sidebarMenu'>
+                    <button className='createTitle' onClick={createNewTeam}>Create Team</button>
+                    <main>
+                        {teamList.sort((a, b) => {
+                        let fa = a.createdAt.toLowerCase(),
+                            fb = b.createdAt.toLowerCase();
 
-                    if (fa < fb) {
-                        return -1;
-                    }
-                    if (fa > fb) {
-                        return 1;
-                    }
-                    return 0;
-                    }).map((team) => (
-                        <ol
-                        
-                        key={team.id}
-                        >
-                            <Link to={`/teamPage/${team.teamID}/tasks`}>
-                                {team.team.name}
-                            </Link>
-                        </ol>
-                    ))}
-                </main>
+                        if (fa < fb) {
+                            return -1;
+                        }
+                        if (fa > fb) {
+                            return 1;
+                        }
+                        return 0;
+                        }).map((team) => (
+                            <ol
+                            key={team.id}
+                            >
+                                <Link to={`/teamPage/${team.teamID}/tasks`}>
+                                    {team.team.name}
+                                </Link>
+                            </ol>
+                        ))}
+                    </main>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
+
+export default withAuthenticator(Sidebar)

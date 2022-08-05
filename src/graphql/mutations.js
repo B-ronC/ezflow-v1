@@ -9,6 +9,7 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
+      email
       teams {
         items {
           id
@@ -45,6 +46,7 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
+      email
       teams {
         items {
           id
@@ -81,6 +83,7 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
+      email
       teams {
         items {
           id
@@ -133,6 +136,7 @@ export const createTask = /* GraphQL */ `
       from {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -188,6 +192,7 @@ export const updateTask = /* GraphQL */ `
       from {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -243,6 +248,7 @@ export const deleteTask = /* GraphQL */ `
       from {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -403,6 +409,7 @@ export const createUserTeams = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -444,6 +451,7 @@ export const updateUserTeams = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -485,6 +493,7 @@ export const deleteUserTeams = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -526,6 +535,7 @@ export const createUserTasks = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -547,6 +557,7 @@ export const createUserTasks = /* GraphQL */ `
         from {
           id
           name
+          email
           createdAt
           updatedAt
           owner
@@ -582,6 +593,7 @@ export const updateUserTasks = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -603,6 +615,7 @@ export const updateUserTasks = /* GraphQL */ `
         from {
           id
           name
+          email
           createdAt
           updatedAt
           owner
@@ -638,6 +651,7 @@ export const deleteUserTasks = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -659,6 +673,7 @@ export const deleteUserTasks = /* GraphQL */ `
         from {
           id
           name
+          email
           createdAt
           updatedAt
           owner

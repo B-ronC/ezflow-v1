@@ -6,6 +6,7 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       name
+      email
       teams {
         items {
           id
@@ -44,6 +45,7 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -79,6 +81,7 @@ export const getTask = /* GraphQL */ `
       from {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -128,6 +131,7 @@ export const listTasks = /* GraphQL */ `
         from {
           id
           name
+          email
           createdAt
           updatedAt
           owner
@@ -218,6 +222,7 @@ export const getUserTeams = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -261,6 +266,7 @@ export const listUserTeams = /* GraphQL */ `
         user {
           id
           name
+          email
           createdAt
           updatedAt
           owner
@@ -289,6 +295,7 @@ export const getUserTasks = /* GraphQL */ `
       user {
         id
         name
+        email
         teams {
           nextToken
         }
@@ -310,6 +317,7 @@ export const getUserTasks = /* GraphQL */ `
         from {
           id
           name
+          email
           createdAt
           updatedAt
           owner
@@ -347,6 +355,7 @@ export const listUserTasks = /* GraphQL */ `
         user {
           id
           name
+          email
           createdAt
           updatedAt
           owner

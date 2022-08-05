@@ -7,10 +7,6 @@ import React, { useEffect, useState } from 'react';
 
 import { Auth } from 'aws-amplify';
 
-import { root } from '../..'
-import App from '../../App'
-import { BrowserRouter } from 'react-router-dom';
-
 export default function Sidebar() {
     // state
     const [teamList, setTeamList] = useState([])  
@@ -28,7 +24,6 @@ export default function Sidebar() {
                 }))
                 const teamItem = teamObject.data.listUserTeams.items
                 return teamItem
-                
             }
             fetchTeams().then(teams => setTeamList(teams))
         })
@@ -63,12 +58,7 @@ export default function Sidebar() {
             }))
 
             console.log("creating myTeam")
-            //updateTeams()
-            root.render(
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            );
+            updateTeams()
         })
     }
 

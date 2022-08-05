@@ -3,6 +3,7 @@ type User
   @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
   id: ID!
   name: String!
+  email: String!
   teams: [Team] @manyToMany(relationName: "UserTeams")
   tasks: [Task] @manyToMany(relationName: "UserTasks")
 }
@@ -27,4 +28,3 @@ type Team
   members: [User] @manyToMany(relationName: "UserTeams")
   tasks: [Task] @hasMany(indexName: "byTeam", fields: ["id"])
 }
- 

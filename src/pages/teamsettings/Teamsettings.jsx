@@ -1,10 +1,12 @@
 import './teamsettings.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar'
 import { Link, useParams } from 'react-router-dom'
 import { API, graphqlOperation } from "aws-amplify"
-import { listUserTeams } from "../../graphql/queries"
+import { listUserTeams, getTeam } from "../../graphql/queries"
 import { deleteTeam, deleteUserTeams } from "../../graphql/mutations"
+
+import { Auth } from 'aws-amplify';
 
 import { root } from '../..'
 import App from '../../App'
@@ -14,6 +16,26 @@ export const idContextSet = React.createContext()
 
 export default function Teamsettings() {
   const { id } = useParams()
+
+  const checkOwner = async () => {
+    
+    const team = await API.graphql(graphqlOperation(getTeam, {
+      id: id
+    }))
+    const teamItem = team.data.getTeam
+
+    Auth.currentAuthenticatedUser().then((user) => {
+      if (teamItem.owner.includes(user.attributes.sub)) {
+        document.getElementById("btn").disabled = false;
+      } else {
+        document.getElementById("btn").disabled = true;
+      }
+    })
+  }
+
+  useEffect(() => {
+    checkOwner()
+  }, [])
 
   const deleteTeamF = async () => {
     const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
@@ -55,7 +77,7 @@ export default function Teamsettings() {
         <Teamnavbar />
       </idContextSet.Provider>
       <Link to={'/'}>
-        <button onClick={deleteTeamF}>Delete Team</button>
+        <button id="btn" onClick={deleteTeamF}>Delete Team</button>
       </Link>
       </div>
   )

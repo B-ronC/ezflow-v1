@@ -27,15 +27,17 @@ function Searchbar({ placeholder, data }) {
                 <SearchIcon />
             </div>
         </div>
-        {filteredData.length !== 0 &&
-            <div className='dataResult'>
-                {filteredData.slice(0, 15).map((item) => {
-                    return (
-                        <User key={item.id} user={item}/>
-                    )
-                })}
-            </div>
-        }
+        <div className='data'>
+            {filteredData.length !== 0 &&
+                <div className='dataResult'>
+                    {filteredData.slice(0, 15).map((item) => {
+                        return (
+                            <User key={item.id} user={item}/>
+                        )
+                    })}
+                </div>
+            }
+        </div>
     </div>
   )
 }

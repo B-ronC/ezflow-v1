@@ -85,7 +85,7 @@ function Teamsettings({user}) {
         <Teamnavbar />
       </idContextSet.Provider>
       <Link to={'/'}>
-        <button id='btn' onClick={deleteTeamF}>Delete Team</button>
+        <button className='delete' id='btn' onClick={deleteTeamF}>Delete Team</button>
       </Link>
       </div>
   )

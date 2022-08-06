@@ -7,7 +7,7 @@ import Teamtasks from './pages/teamtasks/Teamtasks';
 import Teammembers from './pages/teammembers/Teammembers';
 import Teamsettings from './pages/teamsettings/Teamsettings';
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 import '@aws-amplify/ui-react/styles.css';
 import { Amplify } from 'aws-amplify';
@@ -29,7 +29,9 @@ function App({ signOut }) {
           <Route path='/teamPage/:id/settings' element={<Teamsettings />} />
         </Routes>
       </div>
-      <button onClick={signOut}>Sign out</button>
+      <Link to={'/'}>
+        <button onClick={signOut}>Sign out</button>
+      </Link>
     </>
   );
 }

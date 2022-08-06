@@ -2,3 +2,8 @@
     flex: 4;
     background-color: slateblue;
 }
+
+.memberHeader {
+    padding-top: 20px;
+    padding-left: 20px;
+}

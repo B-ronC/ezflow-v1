@@ -2,6 +2,7 @@ import './teammembers.css';
 import React, { useState, useEffect } from 'react';
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
 import Searchbar from '../../components/searchbar/Searchbar';
+import Member from '../../components/member/Member';
 
 import { API, graphqlOperation } from 'aws-amplify';
 import { useParams } from 'react-router-dom';
@@ -71,7 +72,7 @@ function Teammembers() {
         return 0;
         }).map(user => {
           return (
-            <h3 key={user.user.id}>{user.user.name}</h3>
+            <Member key={user.user.id} member={user.user} />
           )
       })}
     </div>

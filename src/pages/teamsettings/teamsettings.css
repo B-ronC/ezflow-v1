@@ -2,3 +2,10 @@
     flex: 4;
     background-color: slateblue;
 }
+
+.delete {
+    margin: 10px;
+    background-color: rgb(255, 23, 23);
+    border-radius: 3px;
+    border-width: 1px;
+}

@@ -1,3 +1,4 @@
+import './user.css'
 import React, {useContext} from 'react';
 import { idContextMem } from '../../pages/teammembers/Teammembers';
 import { API, graphqlOperation } from 'aws-amplify';
@@ -23,8 +24,8 @@ function User({user}) {
 
   return (
     <div className='user'>
-        {user.name} 
-        {user.email} 
+        <div>{user.name} </div>
+        <div>{user.email} </div>
         <button onClick={addUser}>Add</button>
     </div>
   )

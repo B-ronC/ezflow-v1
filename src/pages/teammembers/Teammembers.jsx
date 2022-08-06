@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { listUsers, listUserTeams } from '../../graphql/queries';
 
 export const teamIDContextMem = React.createContext()
+export const memListContext = React.createContext()
 
 function Teammembers() {
   const { currTeamID } = useParams()
@@ -63,7 +64,9 @@ function Teammembers() {
     <div className='Teammembers'>
       <teamIDContextMem.Provider value={ currTeamID }>
         <Teamnavbar />
-        <Searchbar placeholder={'Search user...'} data={ userList }/>
+        <memListContext.Provider value={ memberList }>
+          <Searchbar placeholder={'Search user...'} data={ userList }/>
+        </memListContext.Provider>
       </teamIDContextMem.Provider>
       <h3>Members:</h3>
       {memberList.sort(function(a, b){

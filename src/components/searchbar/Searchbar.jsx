@@ -1,16 +1,26 @@
 import './searchbar.css';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import User from '../user/User';
+import { memListContext } from '../../pages/teammembers/Teammembers';
 
-function Searchbar({ placeholder, data }) {
+import { withAuthenticator } from '@aws-amplify/ui-react';
+
+function Searchbar({ placeholder, data, user }) {
+    const userTeamList = useContext(memListContext)
     const [filteredData, setFilteredData] = useState([])
+
+    let memberList = userTeamList.map((user) => {
+        return user.user.name
+    })
 
     // filters user names with search word
     const handleFilter = (event) => {
         const searchWord = event.target.value
         const newFilter = data?.filter((value) => {
-            return value.name.toLowerCase().includes(searchWord.toLowerCase())
+            return value.name.toLowerCase().includes(searchWord.toLowerCase()) 
+                && value.name !== user.attributes.name
+                && !memberList.includes(value.name)
         })
         if (searchWord === '') {
             setFilteredData([])
@@ -42,4 +52,4 @@ function Searchbar({ placeholder, data }) {
   )
 }
 
-export default Searchbar
+export default withAuthenticator(Searchbar)

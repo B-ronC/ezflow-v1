@@ -3,16 +3,16 @@ import React from 'react';
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
 import { useParams } from 'react-router-dom';
 
-export const idContextTask = React.createContext()
+export const teamIDContextTask = React.createContext()
 
 function Teamtasks() {
-  const { id } = useParams()
+  const { currTeamID } = useParams()
 
   return (
     <div className='Teamtasks'>
-      <idContextTask.Provider value={ id }>
+      <teamIDContextTask.Provider value={ currTeamID }>
         <Teamnavbar />
-      </idContextTask.Provider>
+      </teamIDContextTask.Provider>
       <h3>Team Tasks</h3>
     </div>
   )

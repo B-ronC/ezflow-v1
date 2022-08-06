@@ -9,31 +9,31 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 
 function Sidebar({user}) {
     // state
-    const [teamList, setTeamList] = useState([])  
+    const [myTeamList, setMyTeamList] = useState([])  
 
     // updates teamList
     function updateTeams() {
         try {
             const fetchTeams = async () => {
-                const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
+                const userTeamData = await API.graphql(graphqlOperation(listUserTeams, {
                     filter: {
                         userID: {
                             eq: user.attributes.sub
                         }
                     }
                 }))
-                console.log('updating teams')
-                const teamItem = teamObject.data.listUserTeams.items
+                console.log('updating teams - sidebar')
+                const userTeamList = userTeamData.data.listUserTeams.items
 
-                return teamItem
+                return userTeamList
             }
-            fetchTeams().then(teams => setTeamList(teams))
+            fetchTeams().then(userTeamList => setMyTeamList(userTeamList))
         } catch (err) {
             console.error(err)
         }
     }
 
-    // update teamList on render
+    // update myTeamList on render
     useEffect(() => {
         updateTeams()
     }, [])
@@ -47,18 +47,18 @@ function Sidebar({user}) {
                 name
             }
             }))
-            console.log('creating team')
+            console.log('creating team - sidebar')
 
             const userID = user.attributes.sub
             const teamID = newTeam.data.createTeam.id
     
-            const newMyTeam = await API.graphql(graphqlOperation(createUserTeams, {
+            const newUserTeam = await API.graphql(graphqlOperation(createUserTeams, {
                 input: {
                     userID: userID,
                     teamID: teamID
                 }
             }))
-            console.log('creating myTeam')
+            console.log('creating user team - sidebar')
 
             updateTeams() 
         } catch (err) {
@@ -72,7 +72,7 @@ function Sidebar({user}) {
                 <div className='sidebarMenu'>
                     <button className='createTitle' onClick={createNewTeam}>Create Team</button>
                     <main>
-                        {teamList.sort((a, b) => {
+                        {myTeamList.sort((a, b) => {
                         let fa = a.createdAt.toLowerCase(),
                             fb = b.createdAt.toLowerCase();
 

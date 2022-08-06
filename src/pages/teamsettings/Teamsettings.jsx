@@ -12,21 +12,21 @@ import { root } from '../..';
 import App from '../../App';
 import { BrowserRouter } from 'react-router-dom';
 
-export const idContextSet = React.createContext()
+export const teamIDContextSet = React.createContext()
 
 function Teamsettings({user}) {
-  const { id } = useParams()
+  const { currTeamID } = useParams()
 
   // enables / disables delete button if user is owner
   const checkOwner = async () => {
     try {
-      const team = await API.graphql(graphqlOperation(getTeam, {
-        id: id
+      const teamData = await API.graphql(graphqlOperation(getTeam, {
+        id: currTeamID
       }))
-      console.log('fetching team')
-      const teamItem = team.data.getTeam
+      console.log('checking owner - settings')
+      const team = teamData.data.getTeam
 
-      if (teamItem.owner.includes(user?.attributes.sub)) {
+      if (team.owner.includes(user.attributes.sub)) {
         document.getElementById('btn').disabled = false;
       } else {
         document.getElementById('btn').disabled = true;
@@ -43,36 +43,36 @@ function Teamsettings({user}) {
   // delete team / members / tasks
   const deleteTeamF = async () => {
     try {
-      const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
+      const userTeamData = await API.graphql(graphqlOperation(listUserTeams, {
         filter: {
-            teamID: {
-                eq: id
-            }
+          teamID: {
+            eq: currTeamID
+          }
         }
       }))
-      console.log('fetching user teams')
-      const teamItem = teamObject.data.listUserTeams.items
+      console.log('fetching user teams for delete - settings')
+      const userTeamList = userTeamData.data.listUserTeams.items
   
-      for (let team of teamItem) {
+      for (let userTeam of userTeamList) {
         const delUserTeam = await API.graphql(graphqlOperation(deleteUserTeams, {
           input: {
-              id: team.id
+            id: userTeam.id
           }
         }))
-        console.log('deleting user team')
+        console.log('deleting user team - settings')
       }
   
-      const del = await API.graphql(graphqlOperation(deleteTeam, {
+      const delTeam = await API.graphql(graphqlOperation(deleteTeam, {
         input: {
-            id
+          currTeamID
         }
       }))
-      console.log('deleting team')
+      console.log('deleting team - settings')
   
       root.render(
-          <BrowserRouter>
-              <App />
-          </BrowserRouter>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
       )
     } catch (err) {
       console.error(err)
@@ -81,11 +81,11 @@ function Teamsettings({user}) {
 
   return (
     <div className='Teamsettings'>
-      <idContextSet.Provider value={id}>
+      <teamIDContextSet.Provider value={ currTeamID }>
         <Teamnavbar />
-      </idContextSet.Provider>
-      <Link to={'/'}>
-        <button className='delete' id='btn' onClick={deleteTeamF}>Delete Team</button>
+      </teamIDContextSet.Provider>
+      <Link to={ '/' }>
+        <button className='delete' id='btn' onClick={ deleteTeamF }>Delete Team</button>
       </Link>
       </div>
   )

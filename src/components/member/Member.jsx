@@ -1,7 +1,7 @@
 import './member.css'
 import React from 'react';
 
-function Member({member}) {
+function Member({ member }) {
   return (
     <div className='member'>
         <div className='name'>

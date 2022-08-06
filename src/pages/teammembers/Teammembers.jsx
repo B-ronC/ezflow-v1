@@ -8,10 +8,10 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useParams } from 'react-router-dom';
 import { listUsers, listUserTeams } from '../../graphql/queries';
 
-export const idContextMem = React.createContext()
+export const teamIDContextMem = React.createContext()
 
 function Teammembers() {
-  const { id } = useParams()
+  const { currTeamID } = useParams()
 
   const [userList, setUserList] = useState([]) 
   const [memberList, setMemberList] = useState([]) 
@@ -20,13 +20,13 @@ function Teammembers() {
   function updateUsers() {
     try {
       const fetchUsers = async () => {
-        const UserObjectList = await API.graphql(graphqlOperation(listUsers))
-        console.log('fetching users')
-        const UserItemList = UserObjectList.data.listUsers.items
+        const userData = await API.graphql(graphqlOperation(listUsers))
+        console.log('fetching users for search bar - members')
+        const userList = userData.data.listUsers.items
     
-        return UserItemList
+        return userList
       }
-      fetchUsers().then(users => setUserList(users))
+      fetchUsers().then(userList => setUserList(userList))
     } catch (err) {
       console.error(err)
     }
@@ -36,19 +36,19 @@ function Teammembers() {
   function updateMembers() {
     try {
       const fetchUsers = async () => {
-        const teamObject = await API.graphql(graphqlOperation(listUserTeams, {
+        const userTeamData = await API.graphql(graphqlOperation(listUserTeams, {
           filter: {
               teamID: {
-                  eq: id
+                  eq: currTeamID
               }
           }
         }))
-        console.log('fetching members')
-        const teamItem = teamObject.data.listUserTeams.items
+        console.log('fetching members - members')
+        const userTeamList = userTeamData.data.listUserTeams.items
         
-        return teamItem
+        return userTeamList
       }
-      fetchUsers().then(users => setMemberList(users))
+      fetchUsers().then(userTeamList => setMemberList(userTeamList))
     } catch (err) {
       console.error(err)
     }
@@ -61,18 +61,18 @@ function Teammembers() {
 
   return (
     <div className='Teammembers'>
-      <idContextMem.Provider value={id}>
+      <teamIDContextMem.Provider value={ currTeamID }>
         <Teamnavbar />
-        <Searchbar placeholder={'Search user...'} data={userList}/>
-      </idContextMem.Provider>
+        <Searchbar placeholder={'Search user...'} data={ userList }/>
+      </teamIDContextMem.Provider>
       <h3>Members:</h3>
       {memberList.sort(function(a, b){
         if(a.user.name < b.user.name) { return -1; }
         if(a.user.name > b.user.name) { return 1; }
         return 0;
-        }).map(user => {
+        }).map(member => {
           return (
-            <Member key={user.user.id} member={user.user} />
+            <Member key={member.user.id} member={member.user} />
           )
       })}
     </div>

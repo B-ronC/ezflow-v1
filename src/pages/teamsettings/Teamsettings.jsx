@@ -64,7 +64,7 @@ function Teamsettings({user}) {
   
       const delTeam = await API.graphql(graphqlOperation(deleteTeam, {
         input: {
-          currTeamID
+          id: currTeamID
         }
       }))
       console.log('deleting team - settings')

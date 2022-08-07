@@ -28,7 +28,7 @@ function Member({ user, member, owner }) {
           id: userTeam[0].id
         }
       }))
-      console.log('deleting user team - member')
+      console.log('removing member - member')
   
       root.render(
         <BrowserRouter>

@@ -27,8 +27,10 @@ function Teamsettings({user}) {
       const team = teamData.data.getTeam
 
       if (team.owner.includes(user.attributes.sub)) {
+        document.getElementById('lbtn').disabled = true;
         document.getElementById('btn').disabled = false;
       } else {
+        document.getElementById('lbtn').disabled = false;
         document.getElementById('btn').disabled = true;
       }
     } catch (err) {
@@ -39,6 +41,36 @@ function Teamsettings({user}) {
   useEffect(() => {
     checkOwner()
   }, [])
+
+  // delete user Team
+  const leaveTeam = async () => {
+    try {
+      const userTeamData = await API.graphql(graphqlOperation(listUserTeams, {
+        filter: {
+          userID: {
+            eq: user.attributes.sub
+          }
+        }
+      }))
+      console.log('fetching user team to delete member - settings')
+      const userTeam = userTeamData.data.listUserTeams.items
+  
+      const delUserTeam = await API.graphql(graphqlOperation(deleteUserTeams, {
+        input: {
+          id: userTeam[0].id
+        }
+      }))
+      console.log('leaving team - settings')
+  
+      root.render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+      )
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   // delete team / members / tasks
   const deleteTeamF = async () => {
@@ -85,7 +117,10 @@ function Teamsettings({user}) {
         <Teamnavbar />
       </teamIDContextSet.Provider>
       <Link to={ '/' }>
-        <button className='delete' id='btn' onClick={ deleteTeamF }>Delete Team</button>
+        <button className='leave' id='lbtn' onClick={ leaveTeam }>Leave</button>
+      </Link>
+      <Link to={ '/' }>
+        <button className='delete' id='btn' onClick={ deleteTeamF }>Delete</button>
       </Link>
       </div>
   )

@@ -4,6 +4,10 @@ import { teamIDContextMem } from '../../pages/teammembers/Teammembers';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createUserTeams } from '../../graphql/mutations';
 
+import { root } from '../..';
+import App from '../../App';
+import { BrowserRouter } from 'react-router-dom';
+
 function User({ user }) {
     const currTeamID = useContext(teamIDContextMem)
     
@@ -17,6 +21,12 @@ function User({ user }) {
                 }
             }))
             console.log('added user')
+
+            root.render(
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            )
         } catch (err) {
             console.error(err)
         }

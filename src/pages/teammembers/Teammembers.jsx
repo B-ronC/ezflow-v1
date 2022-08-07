@@ -2,11 +2,12 @@ import './teammembers.css';
 import React, { useState, useEffect } from 'react';
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
 import Searchbar from '../../components/searchbar/Searchbar';
+import TeamOwner from '../../components/teamOwner/TeamOwner';
 import Member from '../../components/member/Member';
 
 import { API, graphqlOperation } from 'aws-amplify';
 import { useParams } from 'react-router-dom';
-import { listUsers, listUserTeams } from '../../graphql/queries';
+import { getTeam, listUsers, listUserTeams } from '../../graphql/queries';
 
 export const teamIDContextMem = React.createContext()
 export const memListContext = React.createContext()
@@ -16,6 +17,25 @@ function Teammembers() {
 
   const [userList, setUserList] = useState([]) 
   const [memberList, setMemberList] = useState([]) 
+  const [teamOwner, setTeamOwner] = useState([])
+
+  // fetches owner of current team
+  function fetchOwner() {
+    try {
+      const fetchTeam = async () => {
+        const teamData = await API.graphql(graphqlOperation(getTeam, {
+          id: currTeamID
+        }))
+        console.log('fetching team to determine owner - members')
+        const team = teamData.data.getTeam
+
+        return team
+      }
+      fetchTeam().then(team => setTeamOwner(team.owner))
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   // fetches user list for search bar
   function updateUsers() {
@@ -58,6 +78,7 @@ function Teammembers() {
   useEffect(() => {
     updateUsers()
     updateMembers()
+    fetchOwner()
   }, [])
 
   return (
@@ -68,16 +89,24 @@ function Teammembers() {
           <Searchbar placeholder={'Search user...'} data={ userList }/>
         </memListContext.Provider>
       </teamIDContextMem.Provider>
-      <h3>Members:</h3>
-      {memberList.sort(function(a, b){
-        if(a.user.name < b.user.name) { return -1; }
-        if(a.user.name > b.user.name) { return 1; }
-        return 0;
-        }).map(member => {
-          return (
-            <Member key={member.user.id} member={member.user} />
-          )
-      })}
+      <h3>Owner:</h3>
+      {teamOwner.length !== 0 &&
+        <div>
+          <TeamOwner owner={ teamOwner } />
+          <h3>Members:</h3>
+          {memberList.filter((value) => {
+            return value.user.id !== teamOwner
+          }).sort(function(a, b){
+            if(a.user.name < b.user.name) { return -1; }
+            if(a.user.name > b.user.name) { return 1; }
+            return 0;
+            }).map(member => {
+              return (
+                <Member key={member.user.id} member={member.user} />
+              )
+          })}
+        </div>
+      }
     </div>
   )
 }

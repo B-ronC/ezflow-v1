@@ -1,0 +1,16 @@
+.owner {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+    padding: 5px 25px;
+    margin: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: rgba(245, 245, 245, 0.747);
+}
+
+.assignBtn {
+    border-radius: 3px;
+    border-width: 1px;
+}

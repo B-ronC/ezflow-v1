@@ -102,7 +102,7 @@ function Teammembers() {
             return 0;
             }).map(member => {
               return (
-                <Member key={member.user.id} member={member.user} />
+                <Member key={member.user.id} member={member.user} owner={ teamOwner } />
               )
           })}
         </div>

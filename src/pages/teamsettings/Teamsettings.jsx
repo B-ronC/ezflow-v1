@@ -42,7 +42,7 @@ function Teamsettings({user}) {
     checkOwner()
   }, [])
 
-  // delete user Team
+  // remove member
   const leaveTeam = async () => {
     try {
       const userTeamData = await API.graphql(graphqlOperation(listUserTeams, {

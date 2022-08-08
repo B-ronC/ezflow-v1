@@ -6,61 +6,27 @@
     top: 40px;
 }
 
-.sidebarWrapper {
-    padding: 20px;
-    color: #555;
-}
-
 .sidebarMenu {
-    margin-bottom: 10px;
+    height: auto;
+    padding: 0%;
+    width: 100%;
 }
 
 .createTitle {
     font-size: 17px;
-    color: darkslateblue; 
+    color: darkslateblue;
 }
 
-.mateTitle {
-    cursor: pointer;
-    font-size: 17px;
-    color: darkslateblue; 
-}
-
-.mateTitle.active, 
-.mateTitle:hover {
-    background-color: rgb(210, 210, 210);;
-}
-
-.teamTitle {
-    cursor: pointer;
-    font-size: 17px;
-    color: darkslateblue; 
-}
-
-.teamTitle.active, 
-.teamTitle:hover {
-    background-color: rgb(210, 210, 210);;
-}
-
-.teamList {
-    list-style: none;
+.row {
     padding: 5px;
-}
-
-.teams {
-    padding: 3px;
-    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: rgb(197, 191, 191);
+    margin: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
-    border-radius: 10px;
-}
-
-.teams.active, 
-.teams:hover {
-    background-color: rgb(210, 210, 210);;
-}
-
-.icon {
-    margin-right: 7px;
-    font-size: 20px !important;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

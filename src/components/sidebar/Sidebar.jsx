@@ -9,7 +9,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 
 function Sidebar({user}) {
     // state
-    const [myTeamList, setMyTeamList] = useState([])  
+    const [myTeamList, setMyTeamList] = useState([])
 
     // updates teamList
     function updateTeams() {
@@ -68,32 +68,28 @@ function Sidebar({user}) {
 
     return (
         <div className='sidebar'>
-            <div className='sidebarWrapper'>
-                <div className='sidebarMenu'>
-                    <button className='createTitle' onClick={createNewTeam}>Create Team</button>
-                    <main>
-                        {myTeamList.sort((a, b) => {
-                        let fa = a.createdAt.toLowerCase(),
-                            fb = b.createdAt.toLowerCase();
+            <div className='sidebarMenu'>
+                <button className='createTitle' onClick={createNewTeam}>Create Team</button>
+                <main>
+                    {myTeamList.sort((a, b) => {
+                    let fa = a.createdAt.toLowerCase(),
+                        fb = b.createdAt.toLowerCase();
 
-                        if (fa < fb) {
-                            return -1;
-                        }
-                        if (fa > fb) {
-                            return 1;
-                        }
-                        return 0;
-                        }).map((team) => (
-                            <ol
-                            key={team.id}
-                            >
-                                <Link to={`/teamPage/${team.teamID}/tasks`}>
-                                    {team.team.name}
-                                </Link>
-                            </ol>
-                        ))}
-                    </main>
-                </div>
+                    if (fa < fb) {
+                        return -1;
+                    }
+                    if (fa > fb) {
+                        return 1;
+                    }
+                    return 0;
+                    }).map((team) => (
+                        <Link key={team.id} to={`/teamPage/${team.teamID}/tasks`} style={{ textDecoration: 'none' }}>
+                            <div className='row'>
+                                {team.team.name}
+                            </div>
+                        </Link>
+                    ))}
+                </main>
             </div>
         </div>
     )

@@ -2,12 +2,10 @@ import './searchbar.css';
 import React, { useState, useContext } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import User from '../user/User';
-import { memListContext } from '../../pages/teammembers/Teammembers';
 
 import { withAuthenticator } from '@aws-amplify/ui-react';
 
-function Searchbar({ placeholder, data, user }) {
-    const userTeamList = useContext(memListContext)
+function Searchbar({ user, placeholder, data, userTeamList }) {
     const [filteredData, setFilteredData] = useState([])
 
     let memberList = userTeamList.map((user) => {

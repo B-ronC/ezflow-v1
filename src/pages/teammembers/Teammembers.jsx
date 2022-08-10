@@ -85,25 +85,25 @@ function Teammembers() {
       <teamIDContextMem.Provider value={ currTeamID }>
         <Teamnavbar />
         <Searchbar placeholder={'Search user...'} data={ userList } userTeamList={ memberList }/>
+        <h3>Owner:</h3>
+        {teamOwner.length !== 0 &&
+          <div>
+            <TeamOwner owner={ teamOwner } />
+            <h3>Members:</h3>
+            {memberList.filter((value) => {
+              return value.user.id !== teamOwner
+            }).sort(function(a, b){
+              if(a.user.name < b.user.name) { return -1; }
+              if(a.user.name > b.user.name) { return 1; }
+              return 0;
+              }).map(member => {
+                return (
+                  <Member key={member.user.id} member={member.user} owner={ teamOwner } />
+                )
+            })}
+          </div>
+        }
       </teamIDContextMem.Provider>
-      <h3>Owner:</h3>
-      {teamOwner.length !== 0 &&
-        <div>
-          <TeamOwner owner={ teamOwner } />
-          <h3>Members:</h3>
-          {memberList.filter((value) => {
-            return value.user.id !== teamOwner
-          }).sort(function(a, b){
-            if(a.user.name < b.user.name) { return -1; }
-            if(a.user.name > b.user.name) { return 1; }
-            return 0;
-            }).map(member => {
-              return (
-                <Member key={member.user.id} member={member.user} owner={ teamOwner } />
-              )
-          })}
-        </div>
-      }
     </div>
   )
 }

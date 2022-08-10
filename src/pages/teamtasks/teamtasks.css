@@ -2,3 +2,10 @@
     flex: 7;
     background-color: slateblue;
 }
+
+.task {
+    border: 1px solid;
+    margin: 3px;
+    padding: 3px;
+    background-color: lightgrey;
+}

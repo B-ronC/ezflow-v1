@@ -1,37 +1,59 @@
 import './taskPopup.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDom from 'react-dom';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createTask, createUserTasks } from '../../graphql/mutations';
+import { teamIDContextMem } from '../../pages/teammembers/Teammembers';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
-function TaskPopup({ open, onClose, taskMem }) {
+function TaskPopup({ user, open, onClose, taskMem }) {
+    const teamIDMem = useContext(teamIDContextMem)
+
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault()
+            const { target } = e
+    
+            const newTask = await API.graphql(graphqlOperation(createTask, {
+                input: {
+                    teamID: teamIDMem,
+                    title: target.title.value,
+                    description: target.description.value,
+                    from: user.attributes.sub,
+                    status: 0
+                }
+            }))
+            console.log('creating task - task popup')
+    
+            const newUserTeam = await API.graphql(graphqlOperation(createUserTasks, {
+                input: {
+                    userID: taskMem.id,
+                    taskID: newTask.data.createTask.id
+                }
+            }))
+            console.log('creating user task - task popup')
+    
+            onClose()
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     if (!open) return null
-
-    // const handleSubmit = async ({ target }) => {
-    //     target.preventDefault()
-
-    //     const newTask = await API.graphql(graphqlOperation(createTask, {
-    //         input: {
-    //           title: target.title,
-    //           description: target.description,
-    //           to: taskMem,
-    //           from: ,
-    //           team: ,
-    //           status: 
-    //         }
-    //     }))
-    //     console.log('creating task - task popup')
-    // }
 
     return ReactDom.createPortal(
         <>
             <div className='overLay' />
             <div className='taskPopup'>
-                {/* <form onSubmit={ handleSubmit }>
+                <form onSubmit={ handleSubmit }>
+                    <h3>Title:</h3>
                     <input placeholder='Enter a title' name='title' />
+                    <h3>Description</h3>
                     <input placeholder='Enter a description' name='description' />
-                    <button>Create Task</button>
-                </form> */}
+                    <div>
+                        <button>Create Task</button>
+                    </div>
+                </form>
                 <button onClick={ onClose }>Cancel</button>
             </div>
         </>,
@@ -39,4 +61,4 @@ function TaskPopup({ open, onClose, taskMem }) {
     )
 }
 
-export default TaskPopup
+export default withAuthenticator(TaskPopup)

@@ -20,8 +20,8 @@ type Task
   title: String!
   description: String!
   to: [User] @manyToMany(relationName: "UserTasks")
-  from: User @hasOne
-  team: Team @hasOne
+  from: String!
+  status: Int!
 }
 
 type Team

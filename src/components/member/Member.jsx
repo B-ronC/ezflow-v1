@@ -1,15 +1,19 @@
 import './member.css'
-import React from 'react';
+import React, { useState } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listUserTeams } from '../../graphql/queries';
 import { deleteUserTeams } from '../../graphql/mutations';
+
+import TaskPopup from '../taskPopup/TaskPopup';
 
 import { root } from '../..';
 import App from '../../App';
 import { BrowserRouter } from 'react-router-dom';
 
 function Member({ user, member, owner }) {
+  const [isOpen, setIsOpen] = useState(false)
+
   // delete member on click
   const deleteMember = async () => {
     try {
@@ -48,7 +52,8 @@ function Member({ user, member, owner }) {
         <div className='email'>
             {member.email}
         </div>
-        <button className='assignBtn'>Assign Task</button>
+        <button className='assignBtn' onClick={() => setIsOpen(true)}>Assign Task</button>
+        <TaskPopup open={ isOpen } onClose={() => setIsOpen(false)} taskMem={ member }/>
         {user.attributes.sub === owner &&
           <button className='removeBtn' onClick={ deleteMember }>Remove</button>
         }

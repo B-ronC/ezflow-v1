@@ -18,7 +18,7 @@ function Teammembers() {
   const [memberList, setMemberList] = useState([]) 
   const [teamOwner, setTeamOwner] = useState([])
 
-  // fetches owner of current team
+  // fetches owner of current team and 
   function fetchOwner() {
     try {
       const fetchTeam = async () => {

@@ -2,11 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser(
-    $filter: ModelSubscriptionUserFilterInput
-    $owner: String
-  ) {
-    onCreateUser(filter: $filter, owner: $owner) {
+  subscription OnCreateUser($owner: String) {
+    onCreateUser(owner: $owner) {
       id
       name
       email
@@ -39,11 +36,8 @@ export const onCreateUser = /* GraphQL */ `
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser(
-    $filter: ModelSubscriptionUserFilterInput
-    $owner: String
-  ) {
-    onUpdateUser(filter: $filter, owner: $owner) {
+  subscription OnUpdateUser($owner: String) {
+    onUpdateUser(owner: $owner) {
       id
       name
       email
@@ -76,11 +70,8 @@ export const onUpdateUser = /* GraphQL */ `
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser(
-    $filter: ModelSubscriptionUserFilterInput
-    $owner: String
-  ) {
-    onDeleteUser(filter: $filter, owner: $owner) {
+  subscription OnDeleteUser($owner: String) {
+    onDeleteUser(owner: $owner) {
       id
       name
       email
@@ -113,11 +104,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateTask = /* GraphQL */ `
-  subscription OnCreateTask(
-    $filter: ModelSubscriptionTaskFilterInput
-    $owner: String
-  ) {
-    onCreateTask(filter: $filter, owner: $owner) {
+  subscription OnCreateTask($owner: String) {
+    onCreateTask(owner: $owner) {
       id
       teamID
       title
@@ -133,47 +121,17 @@ export const onCreateTask = /* GraphQL */ `
         }
         nextToken
       }
-      from {
-        id
-        name
-        email
-        teams {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      team {
-        id
-        name
-        members {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      from
+      status
       createdAt
       updatedAt
-      taskFromId
-      taskTeamId
       owner
     }
   }
 `;
 export const onUpdateTask = /* GraphQL */ `
-  subscription OnUpdateTask(
-    $filter: ModelSubscriptionTaskFilterInput
-    $owner: String
-  ) {
-    onUpdateTask(filter: $filter, owner: $owner) {
+  subscription OnUpdateTask($owner: String) {
+    onUpdateTask(owner: $owner) {
       id
       teamID
       title
@@ -189,47 +147,17 @@ export const onUpdateTask = /* GraphQL */ `
         }
         nextToken
       }
-      from {
-        id
-        name
-        email
-        teams {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      team {
-        id
-        name
-        members {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      from
+      status
       createdAt
       updatedAt
-      taskFromId
-      taskTeamId
       owner
     }
   }
 `;
 export const onDeleteTask = /* GraphQL */ `
-  subscription OnDeleteTask(
-    $filter: ModelSubscriptionTaskFilterInput
-    $owner: String
-  ) {
-    onDeleteTask(filter: $filter, owner: $owner) {
+  subscription OnDeleteTask($owner: String) {
+    onDeleteTask(owner: $owner) {
       id
       teamID
       title
@@ -245,47 +173,17 @@ export const onDeleteTask = /* GraphQL */ `
         }
         nextToken
       }
-      from {
-        id
-        name
-        email
-        teams {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      team {
-        id
-        name
-        members {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      from
+      status
       createdAt
       updatedAt
-      taskFromId
-      taskTeamId
       owner
     }
   }
 `;
 export const onCreateTeam = /* GraphQL */ `
-  subscription OnCreateTeam(
-    $filter: ModelSubscriptionTeamFilterInput
-    $owner: String
-  ) {
-    onCreateTeam(filter: $filter, owner: $owner) {
+  subscription OnCreateTeam($owner: String) {
+    onCreateTeam(owner: $owner) {
       id
       name
       members {
@@ -305,10 +203,10 @@ export const onCreateTeam = /* GraphQL */ `
           teamID
           title
           description
+          from
+          status
           createdAt
           updatedAt
-          taskFromId
-          taskTeamId
           owner
         }
         nextToken
@@ -320,11 +218,8 @@ export const onCreateTeam = /* GraphQL */ `
   }
 `;
 export const onUpdateTeam = /* GraphQL */ `
-  subscription OnUpdateTeam(
-    $filter: ModelSubscriptionTeamFilterInput
-    $owner: String
-  ) {
-    onUpdateTeam(filter: $filter, owner: $owner) {
+  subscription OnUpdateTeam($owner: String) {
+    onUpdateTeam(owner: $owner) {
       id
       name
       members {
@@ -344,10 +239,10 @@ export const onUpdateTeam = /* GraphQL */ `
           teamID
           title
           description
+          from
+          status
           createdAt
           updatedAt
-          taskFromId
-          taskTeamId
           owner
         }
         nextToken
@@ -359,11 +254,8 @@ export const onUpdateTeam = /* GraphQL */ `
   }
 `;
 export const onDeleteTeam = /* GraphQL */ `
-  subscription OnDeleteTeam(
-    $filter: ModelSubscriptionTeamFilterInput
-    $owner: String
-  ) {
-    onDeleteTeam(filter: $filter, owner: $owner) {
+  subscription OnDeleteTeam($owner: String) {
+    onDeleteTeam(owner: $owner) {
       id
       name
       members {
@@ -383,10 +275,10 @@ export const onDeleteTeam = /* GraphQL */ `
           teamID
           title
           description
+          from
+          status
           createdAt
           updatedAt
-          taskFromId
-          taskTeamId
           owner
         }
         nextToken
@@ -398,11 +290,8 @@ export const onDeleteTeam = /* GraphQL */ `
   }
 `;
 export const onCreateUserTeams = /* GraphQL */ `
-  subscription OnCreateUserTeams(
-    $filter: ModelSubscriptionUserTeamsFilterInput
-    $owner: String
-  ) {
-    onCreateUserTeams(filter: $filter, owner: $owner) {
+  subscription OnCreateUserTeams($owner: String) {
+    onCreateUserTeams(owner: $owner) {
       id
       userID
       teamID
@@ -440,11 +329,8 @@ export const onCreateUserTeams = /* GraphQL */ `
   }
 `;
 export const onUpdateUserTeams = /* GraphQL */ `
-  subscription OnUpdateUserTeams(
-    $filter: ModelSubscriptionUserTeamsFilterInput
-    $owner: String
-  ) {
-    onUpdateUserTeams(filter: $filter, owner: $owner) {
+  subscription OnUpdateUserTeams($owner: String) {
+    onUpdateUserTeams(owner: $owner) {
       id
       userID
       teamID
@@ -482,11 +368,8 @@ export const onUpdateUserTeams = /* GraphQL */ `
   }
 `;
 export const onDeleteUserTeams = /* GraphQL */ `
-  subscription OnDeleteUserTeams(
-    $filter: ModelSubscriptionUserTeamsFilterInput
-    $owner: String
-  ) {
-    onDeleteUserTeams(filter: $filter, owner: $owner) {
+  subscription OnDeleteUserTeams($owner: String) {
+    onDeleteUserTeams(owner: $owner) {
       id
       userID
       teamID
@@ -524,11 +407,8 @@ export const onDeleteUserTeams = /* GraphQL */ `
   }
 `;
 export const onCreateUserTasks = /* GraphQL */ `
-  subscription OnCreateUserTasks(
-    $filter: ModelSubscriptionUserTasksFilterInput
-    $owner: String
-  ) {
-    onCreateUserTasks(filter: $filter, owner: $owner) {
+  subscription OnCreateUserTasks($owner: String) {
+    onCreateUserTasks(owner: $owner) {
       id
       userID
       taskID
@@ -554,25 +434,10 @@ export const onCreateUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
-        from {
-          id
-          name
-          email
-          createdAt
-          updatedAt
-          owner
-        }
-        team {
-          id
-          name
-          createdAt
-          updatedAt
-          owner
-        }
+        from
+        status
         createdAt
         updatedAt
-        taskFromId
-        taskTeamId
         owner
       }
       createdAt
@@ -582,11 +447,8 @@ export const onCreateUserTasks = /* GraphQL */ `
   }
 `;
 export const onUpdateUserTasks = /* GraphQL */ `
-  subscription OnUpdateUserTasks(
-    $filter: ModelSubscriptionUserTasksFilterInput
-    $owner: String
-  ) {
-    onUpdateUserTasks(filter: $filter, owner: $owner) {
+  subscription OnUpdateUserTasks($owner: String) {
+    onUpdateUserTasks(owner: $owner) {
       id
       userID
       taskID
@@ -612,25 +474,10 @@ export const onUpdateUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
-        from {
-          id
-          name
-          email
-          createdAt
-          updatedAt
-          owner
-        }
-        team {
-          id
-          name
-          createdAt
-          updatedAt
-          owner
-        }
+        from
+        status
         createdAt
         updatedAt
-        taskFromId
-        taskTeamId
         owner
       }
       createdAt
@@ -640,11 +487,8 @@ export const onUpdateUserTasks = /* GraphQL */ `
   }
 `;
 export const onDeleteUserTasks = /* GraphQL */ `
-  subscription OnDeleteUserTasks(
-    $filter: ModelSubscriptionUserTasksFilterInput
-    $owner: String
-  ) {
-    onDeleteUserTasks(filter: $filter, owner: $owner) {
+  subscription OnDeleteUserTasks($owner: String) {
+    onDeleteUserTasks(owner: $owner) {
       id
       userID
       taskID
@@ -670,25 +514,10 @@ export const onDeleteUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
-        from {
-          id
-          name
-          email
-          createdAt
-          updatedAt
-          owner
-        }
-        team {
-          id
-          name
-          createdAt
-          updatedAt
-          owner
-        }
+        from
+        status
         createdAt
         updatedAt
-        taskFromId
-        taskTeamId
         owner
       }
       createdAt

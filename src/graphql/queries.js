@@ -78,37 +78,10 @@ export const getTask = /* GraphQL */ `
         }
         nextToken
       }
-      from {
-        id
-        name
-        email
-        teams {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      team {
-        id
-        name
-        members {
-          nextToken
-        }
-        tasks {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      from
+      status
       createdAt
       updatedAt
-      taskFromId
-      taskTeamId
       owner
     }
   }
@@ -128,25 +101,10 @@ export const listTasks = /* GraphQL */ `
         to {
           nextToken
         }
-        from {
-          id
-          name
-          email
-          createdAt
-          updatedAt
-          owner
-        }
-        team {
-          id
-          name
-          createdAt
-          updatedAt
-          owner
-        }
+        from
+        status
         createdAt
         updatedAt
-        taskFromId
-        taskTeamId
         owner
       }
       nextToken
@@ -175,10 +133,10 @@ export const getTeam = /* GraphQL */ `
           teamID
           title
           description
+          from
+          status
           createdAt
           updatedAt
-          taskFromId
-          taskTeamId
           owner
         }
         nextToken
@@ -314,25 +272,10 @@ export const getUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
-        from {
-          id
-          name
-          email
-          createdAt
-          updatedAt
-          owner
-        }
-        team {
-          id
-          name
-          createdAt
-          updatedAt
-          owner
-        }
+        from
+        status
         createdAt
         updatedAt
-        taskFromId
-        taskTeamId
         owner
       }
       createdAt
@@ -365,10 +308,10 @@ export const listUserTasks = /* GraphQL */ `
           teamID
           title
           description
+          from
+          status
           createdAt
           updatedAt
-          taskFromId
-          taskTeamId
           owner
         }
         createdAt

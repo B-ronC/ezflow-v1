@@ -1,8 +1,11 @@
 import './teamtasks.css';
 import React, { useState } from 'react';
+
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
-import FromUser from '../../components/fromUser/FromUser';
-import ToUser from '../../components/toUser/ToUser';
+import MyActiveTasks from '../../components/myActiveTasks/MyActiveTasks';
+import MyTasks from '../../components/myTasks/MyTasks';
+import MyCreatedTasks from '../../components/myCreatedTasks/MyCreatedTasks';
+
 import { useParams } from 'react-router-dom';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from 'aws-amplify';
@@ -35,9 +38,14 @@ function Teamtasks({ user }) {
 
             return userTaskList
         }
-        fetchTasks().then(userTaskList => setTasks(userTaskList.filter((value) => {
-          return value.task.teamID === currTeamID
-        })))
+        fetchTasks().then(userTaskList => {
+          setTasks(userTaskList.filter((value) => {
+            return value.task.teamID === currTeamID && value.task.status === 0
+          }))
+          setActiveTasks(userTaskList.filter((value) => {
+            return value.task.teamID === currTeamID && value.task.status === 1
+          }))
+        })
     } catch (err) {
         console.error(err)
     }
@@ -79,71 +87,15 @@ function Teamtasks({ user }) {
       </teamIDContextTask.Provider>
       <div>
         <h2>My Active Tasks:</h2>
+        <MyActiveTasks myActiveTasks={ activeTasks } />
       </div>
       <div>
         <h2>My Tasks:</h2>
-        {tasks.sort((a, b) => {
-          let fa = a.createdAt.toLowerCase(),
-              fb = b.createdAt.toLowerCase();
-
-          if (fa < fb) {
-              return -1;
-          }
-          if (fa > fb) {
-              return 1;
-          }
-          return 0;
-          }).map((task) => (
-            <div key={task.task.id} className='task'>
-              
-              <h4>From:</h4>
-              <div>
-                <FromUser userid={ task.task.from } />
-              </div>
-              <h4>Title:</h4>
-              <div>
-                {task.task.title}
-              </div>
-              <h4>Description:</h4>
-              <div>
-                {task.task.description}
-              </div>
-              <button>Start</button>
-            </div>
-          ))
-        }
+        <MyTasks myTasks={ tasks } />
       </div>
       <div>
         <h2>My Created Tasks:</h2>
-        {createdTasks.sort((a, b) => {
-          let fa = a.createdAt.toLowerCase(),
-              fb = b.createdAt.toLowerCase();
-
-          if (fa < fb) {
-              return -1;
-          }
-          if (fa > fb) {
-              return 1;
-          }
-          return 0;
-          }).map((task) => (
-            <div key={task.id} className='task'>
-              <h4>To:</h4>
-              <ToUser taskid={ task.id } />
-              <h4>Title:</h4>
-              <div>
-                {task.title}
-              </div>
-              <h4>Description:</h4>
-              <div>
-                {task.description}
-              </div>
-              <h4>Status:</h4>
-                {task.status === 1 && <p>in progress</p>}
-                {task.status === 0 && <p>waiting</p>}
-            </div>
-          ))
-        }
+        <MyCreatedTasks myCreatedTasks={ createdTasks } />
       </div>
     </div>
   )

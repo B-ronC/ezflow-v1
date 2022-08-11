@@ -1,10 +1,10 @@
 import React from 'react';
-import FromUser from '../../components/fromUser/FromUser';
+import FromUser from '../../taskPageComponents/fromUser/FromUser';
 
-function MyTasks({ myTasks }) {
+function MyActiveTasks({ myActiveTasks }) {
   return (
     <div>
-        {myTasks.sort((a, b) => {
+        {myActiveTasks.sort((a, b) => {
           let fa = a.createdAt.toLowerCase(),
               fb = b.createdAt.toLowerCase();
 
@@ -30,7 +30,7 @@ function MyTasks({ myTasks }) {
               <div>
                 {task.task.description}
               </div>
-              <button>Start</button>
+              <button>Finish</button>
             </div>
           ))
         }
@@ -38,4 +38,4 @@ function MyTasks({ myTasks }) {
   )
 }
 
-export default MyTasks
+export default MyActiveTasks

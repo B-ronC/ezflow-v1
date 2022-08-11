@@ -2,8 +2,8 @@ import './taskPopup.css';
 import React, { useContext } from 'react';
 import ReactDom from 'react-dom';
 import { API, graphqlOperation } from 'aws-amplify';
-import { createTask, createUserTasks } from '../../graphql/mutations';
-import { teamIDContextMem } from '../../pages/teammembers/Teammembers';
+import { createTask, createUserTasks } from '../../../graphql/mutations';
+import { teamIDContextMem } from '../../../pages/teammembers/Teammembers';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 
 function TaskPopup({ user, open, onClose, taskMem }) {

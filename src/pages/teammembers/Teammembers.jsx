@@ -1,9 +1,9 @@
 import './teammembers.css';
 import React, { useState, useEffect } from 'react';
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
-import Searchbar from '../../components/searchbar/Searchbar';
-import TeamOwner from '../../components/teamOwner/TeamOwner';
-import Member from '../../components/member/Member';
+import Searchbar from '../../components/memberPageComponents/searchbar/Searchbar';
+import TeamOwner from '../../components/memberPageComponents/teamOwner/TeamOwner';
+import Member from '../../components/memberPageComponents/member/Member';
 
 import { API, graphqlOperation } from 'aws-amplify';
 import { useParams } from 'react-router-dom';

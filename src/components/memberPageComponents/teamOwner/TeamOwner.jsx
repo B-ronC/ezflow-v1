@@ -1,7 +1,7 @@
 import './teamOwner.css'
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { getUser } from '../../graphql/queries';
+import { getUser } from '../../../graphql/queries';
 
 function TeamOwner({ owner }) {
     const [teamOwner, setTeamOwner] = useState([])

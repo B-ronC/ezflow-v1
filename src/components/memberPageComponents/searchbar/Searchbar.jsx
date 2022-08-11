@@ -1,5 +1,5 @@
 import './searchbar.css';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import User from '../user/User';
 

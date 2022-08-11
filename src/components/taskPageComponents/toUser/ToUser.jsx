@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listUserTasks } from '../../graphql/queries';
+import { listUserTasks } from '../../../graphql/queries';
 
 function ToUser({ taskid }) {
     const [task, setTasks] = useState([])

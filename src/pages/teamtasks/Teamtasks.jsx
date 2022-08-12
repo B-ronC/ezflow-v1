@@ -88,7 +88,7 @@ function Teamtasks({ user }) {
         <MyActiveTasks myActiveTasks={ activeTasks } />
       </div>
       <div>
-        <h2>My Tasks:</h2>
+        <h2>My Waiting Tasks:</h2>
         <MyTasks myTasks={ tasks } />
       </div>
       <div>

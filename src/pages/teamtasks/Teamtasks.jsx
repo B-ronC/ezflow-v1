@@ -1,5 +1,5 @@
 import './teamtasks.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
 import MyActiveTasks from '../../components/taskPageComponents/myActiveTasks/MyActiveTasks';
@@ -10,8 +10,6 @@ import { useParams } from 'react-router-dom';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listUserTasks, listTasks } from '../../graphql/queries';
-import { useEffect } from 'react';
-
 
 export const teamIDContextTask = React.createContext()
 
@@ -78,7 +76,7 @@ function Teamtasks({ user }) {
   useEffect(() => {
     updateTasks()
     updateCreatedTasks()
-  }, [])
+  }, [currTeamID])
 
   return (
     <div className='Teamtasks'>

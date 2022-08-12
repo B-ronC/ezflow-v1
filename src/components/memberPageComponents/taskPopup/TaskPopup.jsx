@@ -19,6 +19,7 @@ function TaskPopup({ user, open, onClose, taskMem }) {
                     teamID: teamIDMem,
                     title: target.title.value,
                     description: target.description.value,
+                    toID: taskMem.id,
                     from: user.attributes.sub,
                     status: 0
                 }

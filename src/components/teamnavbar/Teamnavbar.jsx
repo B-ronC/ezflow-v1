@@ -42,7 +42,7 @@ function Teamnavbar() {
 
     useEffect(() => {
         getTeamName()
-    }, [])
+    }, [currTeamID])
 
     return (
         <nav className='nav'>

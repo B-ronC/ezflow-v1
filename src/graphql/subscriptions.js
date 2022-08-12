@@ -121,6 +121,7 @@ export const onCreateTask = /* GraphQL */ `
         }
         nextToken
       }
+      toID
       from
       status
       createdAt
@@ -147,6 +148,7 @@ export const onUpdateTask = /* GraphQL */ `
         }
         nextToken
       }
+      toID
       from
       status
       createdAt
@@ -173,6 +175,7 @@ export const onDeleteTask = /* GraphQL */ `
         }
         nextToken
       }
+      toID
       from
       status
       createdAt
@@ -203,6 +206,7 @@ export const onCreateTeam = /* GraphQL */ `
           teamID
           title
           description
+          toID
           from
           status
           createdAt
@@ -239,6 +243,7 @@ export const onUpdateTeam = /* GraphQL */ `
           teamID
           title
           description
+          toID
           from
           status
           createdAt
@@ -275,6 +280,7 @@ export const onDeleteTeam = /* GraphQL */ `
           teamID
           title
           description
+          toID
           from
           status
           createdAt
@@ -434,6 +440,7 @@ export const onCreateUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
+        toID
         from
         status
         createdAt
@@ -474,6 +481,7 @@ export const onUpdateUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
+        toID
         from
         status
         createdAt
@@ -514,6 +522,7 @@ export const onDeleteUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
+        toID
         from
         status
         createdAt

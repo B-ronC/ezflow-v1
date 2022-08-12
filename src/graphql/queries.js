@@ -78,6 +78,7 @@ export const getTask = /* GraphQL */ `
         }
         nextToken
       }
+      toID
       from
       status
       createdAt
@@ -101,6 +102,7 @@ export const listTasks = /* GraphQL */ `
         to {
           nextToken
         }
+        toID
         from
         status
         createdAt
@@ -133,6 +135,7 @@ export const getTeam = /* GraphQL */ `
           teamID
           title
           description
+          toID
           from
           status
           createdAt
@@ -272,6 +275,7 @@ export const getUserTasks = /* GraphQL */ `
         to {
           nextToken
         }
+        toID
         from
         status
         createdAt
@@ -308,6 +312,7 @@ export const listUserTasks = /* GraphQL */ `
           teamID
           title
           description
+          toID
           from
           status
           createdAt

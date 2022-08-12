@@ -2,9 +2,11 @@ import './teamOwner.css'
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { getUser } from '../../../graphql/queries';
+import TaskPopup from '../../memberPageComponents/taskPopup/TaskPopup';
 
 function TeamOwner({ owner }) {
     const [teamOwner, setTeamOwner] = useState([])
+    const [isOpen, setIsOpen] = useState(false)
 
     // fetch team owner
     function fetchOwner() {
@@ -36,7 +38,8 @@ function TeamOwner({ owner }) {
             <div className='email'>
                 {teamOwner.email}
             </div>
-            <button className='assignBtn'>Assign Task</button>
+            <button className='assignBtn' onClick={() => setIsOpen(true)}>Assign Task</button>
+            <TaskPopup open={ isOpen } onClose={() => setIsOpen(false)} taskMem={ teamOwner }/>
         </div>
     )
     }

@@ -83,7 +83,7 @@ function Sidebar({user}) {
                     }
                     return 0;
                     }).map((team) => (
-                        <Link key={team.id} to={`/teamPage/${team.teamID}/tasks`} style={{ textDecoration: 'none' }}>
+                        <Link key={team.id} to={`/teamPage/${team.teamID}/tasks`} style={{textDecoration: 'none'}}>
                             <div className='row'>
                                 {team.team.name}
                             </div>

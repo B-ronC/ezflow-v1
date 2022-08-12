@@ -20,6 +20,7 @@ type Task
   title: String!
   description: String!
   to: [User] @manyToMany(relationName: "UserTasks")
+  toID: String!
   from: String!
   status: Int!
 }

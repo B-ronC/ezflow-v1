@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
 import { Link, useParams } from 'react-router-dom';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listUserTeams, getTeam } from '../../graphql/queries';
-import { deleteTeam, deleteUserTeams } from '../../graphql/mutations';
+import { listUserTeams, getTeam, listTasks, listUserTasks } from '../../graphql/queries';
+import { deleteTeam, deleteUserTasks, deleteTask, deleteUserTeams } from '../../graphql/mutations';
 
 import { withAuthenticator } from '@aws-amplify/ui-react';
 
@@ -42,6 +42,82 @@ function Teamsettings({user}) {
     checkOwner()
   }, [])
 
+  // delete all tasks connected to user
+  const delUserTasks = async () => {
+    const userTaskData = await API.graphql(graphqlOperation(listUserTasks))
+    console.log('fetching user tasks to delete - settings')
+    const userTaskList = userTaskData.data.listUserTasks.items.filter((userTask) => {
+      return userTask.task.teamID === currTeamID && (userTask.userID === user.attributes.sub || userTask.task.from === user.attributes.sub)
+    })
+
+    for (let userTask of userTaskList) {
+      const delUserTask = await API.graphql(graphqlOperation(deleteUserTasks, {
+        input: {
+          id: userTask.id
+        }
+      }))
+      console.log('deleting user tasks - settings')
+    }
+
+    const taskData = await API.graphql(graphqlOperation(listTasks, {
+      filter: {
+        teamID: {
+          eq: currTeamID
+        }
+      }
+    }))
+    console.log('fetching tasks to delete - settings')
+    const taskList = taskData.data.listTasks.items.filter((task) => {
+      return (task.from === user.attributes.sub || task.toID === user.attributes.sub)
+    })
+
+    for (let task of taskList) {
+      const deltask = await API.graphql(graphqlOperation(deleteTask, {
+        input: {
+          id: task.id
+        }
+      }))
+      console.log('deleting user created tasks - settings')
+    }
+  }
+
+  // delete all tasks connected to team
+  const delTeamTasks = async () => {
+    const userTaskData = await API.graphql(graphqlOperation(listUserTasks))
+    console.log('fetching user tasks to delete - settings')
+    const userTaskList = userTaskData.data.listUserTasks.items.filter((userTask) => {
+      return userTask.task.teamID === currTeamID
+    })
+
+    for (let userTask of userTaskList) {
+      const delUserTask = await API.graphql(graphqlOperation(deleteUserTasks, {
+        input: {
+          id: userTask.id
+        }
+      }))
+      console.log('deleting user tasks - settings')
+    }
+
+    const taskData = await API.graphql(graphqlOperation(listTasks, {
+      filter: {
+        teamID: {
+          eq: currTeamID
+        }
+      }
+    }))
+    console.log('fetching tasks to delete - settings')
+    const taskList = taskData.data.listTasks.items
+
+    for (let task of taskList) {
+      const deltask = await API.graphql(graphqlOperation(deleteTask, {
+        input: {
+          id: task.id
+        }
+      }))
+      console.log('deleting user created tasks - settings')
+    }
+  }
+
   // remove member
   const leaveTeam = async () => {
     try {
@@ -61,6 +137,8 @@ function Teamsettings({user}) {
         }
       }))
       console.log('leaving team - settings')
+
+      delUserTasks()
   
       root.render(
         <BrowserRouter>
@@ -82,7 +160,7 @@ function Teamsettings({user}) {
           }
         }
       }))
-      console.log('fetching user teams for delete - settings')
+      console.log('fetching user teams to delete - settings')
       const userTeamList = userTeamData.data.listUserTeams.items
   
       for (let userTeam of userTeamList) {
@@ -91,7 +169,7 @@ function Teamsettings({user}) {
             id: userTeam.id
           }
         }))
-        console.log('deleting user team - settings')
+        console.log('deleting user teams - settings')
       }
   
       const delTeam = await API.graphql(graphqlOperation(deleteTeam, {
@@ -100,6 +178,8 @@ function Teamsettings({user}) {
         }
       }))
       console.log('deleting team - settings')
+
+      delTeamTasks()
   
       root.render(
         <BrowserRouter>

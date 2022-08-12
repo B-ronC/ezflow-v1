@@ -50,7 +50,7 @@ function TaskPopup({ user, open, onClose, taskMem }) {
                     <h3>Title:</h3>
                     <input placeholder='Enter a title' name='title' />
                     <h3>Description</h3>
-                    <input placeholder='Enter a description' name='description' />
+                    <textarea placeholder='Enter a description' name='description'></textarea>
                     <div>
                         <button>Create Task</button>
                     </div>

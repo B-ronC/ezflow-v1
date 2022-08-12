@@ -1,5 +1,11 @@
 import React from 'react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { updateTask } from '../../../graphql/mutations';
 import FromUser from '../../taskPageComponents/fromUser/FromUser';
+
+import { root } from '../../..';
+import App from '../../../App';
+import { BrowserRouter } from 'react-router-dom';
 
 function MyTasks({ myTasks }) {
   return (
@@ -30,10 +36,23 @@ function MyTasks({ myTasks }) {
               <div>
                 {task.task.description}
               </div>
-              <button>Start</button>
+              <button onClick={async () => { 
+                const updateStatus = await API.graphql(graphqlOperation(updateTask, {
+                  input: {
+                    id: task.task.id,
+                    status: 1
+                  }
+                }))
+                console.log('starting task - my tasks')
+
+                root.render(
+                  <BrowserRouter>
+                      <App />
+                  </BrowserRouter>
+                ) 
+              }}>Start</button>
             </div>
-          ))
-        }
+        ))}
     </div>
   )
 }

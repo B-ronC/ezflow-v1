@@ -1,5 +1,12 @@
 import React from 'react';
+import { API, graphqlOperation } from 'aws-amplify';
 import FromUser from '../../taskPageComponents/fromUser/FromUser';
+import { listUserTasks } from '../../../graphql/queries';
+import { deleteUserTasks, deleteTask } from '../../../graphql/mutations';
+
+import { root } from '../../..';
+import App from '../../../App';
+import { BrowserRouter } from 'react-router-dom';
 
 function MyActiveTasks({ myActiveTasks }) {
   return (
@@ -30,7 +37,33 @@ function MyActiveTasks({ myActiveTasks }) {
               <div>
                 {task.task.description}
               </div>
-              <button>Finish</button>
+              <button onClick={async () => {
+                const userTaskData = await API.graphql(graphqlOperation(listUserTasks))
+                console.log('fetching user tasks to finish task - active tasks')
+                const userTaskList = userTaskData.data.listUserTasks.items.filter((userTask) => {
+                  return userTask.task.id === task.task.id
+                })
+
+                const delUserTask = await API.graphql(graphqlOperation(deleteUserTasks, {
+                  input: {
+                    id: userTaskList[0].id
+                  }
+                }))
+                console.log('deleting user task - active tasks')
+
+                const deltask = await API.graphql(graphqlOperation(deleteTask, {
+                  input: {
+                    id: task.task.id
+                  }
+                }))
+                console.log('deleting task - active tasks')
+
+                root.render(
+                  <BrowserRouter>
+                      <App />
+                  </BrowserRouter>
+                ) 
+              }}>Finish</button>
             </div>
           ))
         }

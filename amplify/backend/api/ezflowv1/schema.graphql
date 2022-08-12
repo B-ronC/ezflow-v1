@@ -1,7 +1,10 @@
 type User
   @model
   @auth(
-    rules: [{ allow: private, operations: [read, delete] }, { allow: owner }]
+    rules: [
+      { allow: private, operations: [read, delete, update] }
+      { allow: owner }
+    ]
   ) {
   id: ID!
   name: String!
@@ -13,7 +16,10 @@ type User
 type Task
   @model
   @auth(
-    rules: [{ allow: private, operations: [read, delete] }, { allow: owner }]
+    rules: [
+      { allow: private, operations: [read, delete, update] }
+      { allow: owner }
+    ]
   ) {
   id: ID!
   teamID: ID! @index(name: "byTeam", sortKeyFields: ["title"])

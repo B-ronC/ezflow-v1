@@ -11,8 +11,6 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import { API, graphqlOperation } from "aws-amplify";
 import { listUserTasks, listTasks } from "../../graphql/queries";
 
-export const teamIDContextTask = React.createContext();
-
 function Teamtasks({ user }) {
   const { currTeamID } = useParams();
 
@@ -21,7 +19,7 @@ function Teamtasks({ user }) {
   const [createdTasks, setCreatedTasks] = useState([]);
 
   // updates active and waiting task lists
-  function updateTasks() {
+  const updateTasks = () => {
     try {
       const fetchTasks = async () => {
         const userTaskData = await API.graphql(
@@ -53,10 +51,10 @@ function Teamtasks({ user }) {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   // updates created task list
-  function updateCreatedTasks() {
+  const updateCreatedTasks = () => {
     try {
       const fetchCreatedTasks = async () => {
         const taskData = await API.graphql(
@@ -83,7 +81,7 @@ function Teamtasks({ user }) {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   // updates task lists on render
   useEffect(() => {

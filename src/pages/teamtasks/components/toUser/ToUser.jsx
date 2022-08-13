@@ -6,7 +6,7 @@ function ToUser({ taskid }) {
   const [task, setTasks] = useState([]);
 
   // fetches task to determine user name
-  function updateTasks() {
+  const updateTasks = () => {
     try {
       const fetchTasks = async () => {
         const userTaskData = await API.graphql(
@@ -27,7 +27,7 @@ function ToUser({ taskid }) {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     updateTasks();

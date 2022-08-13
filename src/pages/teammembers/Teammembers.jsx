@@ -18,8 +18,8 @@ function Teammembers() {
   const [memberList, setMemberList] = useState([]);
   const [teamOwner, setTeamOwner] = useState([]);
 
-  // fetches owner of current team and
-  function fetchOwner() {
+  // fetches current owner id
+  const fetchOwner = () => {
     try {
       const fetchTeam = async () => {
         const teamData = await API.graphql(
@@ -36,10 +36,10 @@ function Teammembers() {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   // fetches user list for search bar
-  function updateUsers() {
+  const updateUsers = () => {
     try {
       const fetchUsers = async () => {
         const userData = await API.graphql(graphqlOperation(listUsers));
@@ -52,10 +52,10 @@ function Teammembers() {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   // updates member list for members page
-  function updateMembers() {
+  const updateMembers = () => {
     try {
       const fetchUsers = async () => {
         const userTeamData = await API.graphql(
@@ -76,7 +76,7 @@ function Teammembers() {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     updateUsers();
@@ -102,7 +102,7 @@ function Teammembers() {
               .filter((value) => {
                 return value.user.id !== teamOwner;
               })
-              .sort(function (a, b) {
+              .sort((a, b) => {
                 if (a.user.name < b.user.name) {
                   return -1;
                 }

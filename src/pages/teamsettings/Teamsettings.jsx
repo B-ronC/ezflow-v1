@@ -13,8 +13,6 @@ import { root } from "../..";
 import App from "../../App";
 import { BrowserRouter } from "react-router-dom";
 
-export const teamIDContextSet = React.createContext();
-
 function Teamsettings({ user }) {
   const { currTeamID } = useParams();
 

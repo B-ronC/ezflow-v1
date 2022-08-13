@@ -2,9 +2,9 @@ import './teamtasks.css';
 import React, { useState, useEffect } from 'react';
 
 import Teamnavbar from '../../components/teamnavbar/Teamnavbar';
-import MyActiveTasks from '../../components/taskPageComponents/myActiveTasks/MyActiveTasks';
-import MyTasks from '../../components/taskPageComponents/myTasks/MyTasks';
-import MyCreatedTasks from '../../components/taskPageComponents/myCreatedTasks/MyCreatedTasks';
+import MyActiveTasks from './components/myActiveTasks/MyActiveTasks';
+import MyTasks from './components/myTasks/MyTasks';
+import MyCreatedTasks from './components/myCreatedTasks/MyCreatedTasks';
 
 import { useParams } from 'react-router-dom';
 import { withAuthenticator } from '@aws-amplify/ui-react';

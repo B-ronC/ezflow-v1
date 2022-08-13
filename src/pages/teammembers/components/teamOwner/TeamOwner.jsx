@@ -1,8 +1,8 @@
 import './teamOwner.css'
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { getUser } from '../../../graphql/queries';
-import TaskPopup from '../../memberPageComponents/taskPopup/TaskPopup';
+import { getUser } from '../../../../graphql/queries';
+import TaskPopup from '../taskPopup/TaskPopup';
 
 function TeamOwner({ owner }) {
     const [teamOwner, setTeamOwner] = useState([])

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { getUser } from '../../../graphql/queries';
+import { getUser } from '../../../../graphql/queries';
 
 function FromUser({ userid }) {
     const [user, setUser] = useState([])

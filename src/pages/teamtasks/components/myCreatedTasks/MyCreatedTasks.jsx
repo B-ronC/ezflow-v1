@@ -1,5 +1,5 @@
 import React from 'react';
-import ToUser from '../../taskPageComponents/toUser/ToUser';
+import ToUser from '../toUser/ToUser';
 
 function MyCreatedTasks({ myCreatedTasks }) {
   return (

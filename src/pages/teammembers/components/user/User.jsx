@@ -1,11 +1,11 @@
 import './user.css'
 import React, {useContext} from 'react';
-import { teamIDContextMem } from '../../../pages/teammembers/Teammembers';
+import { teamIDContextMem } from '../../Teammembers';
 import { API, graphqlOperation } from 'aws-amplify';
-import { createUserTeams } from '../../../graphql/mutations';
+import { createUserTeams } from '../../../../graphql/mutations';
 
-import { root } from '../../..';
-import App from '../../../App';
+import { root } from '../../../..';
+import App from '../../../../App';
 import { BrowserRouter } from 'react-router-dom';
 
 function User({ user }) {

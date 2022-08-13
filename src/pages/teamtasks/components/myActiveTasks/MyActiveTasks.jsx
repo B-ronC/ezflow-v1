@@ -1,11 +1,11 @@
 import React from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import FromUser from '../../taskPageComponents/fromUser/FromUser';
-import { listUserTasks } from '../../../graphql/queries';
-import { deleteUserTasks, deleteTask } from '../../../graphql/mutations';
+import FromUser from '../fromUser/FromUser';
+import { listUserTasks } from '../../../../graphql/queries';
+import { deleteUserTasks, deleteTask } from '../../../../graphql/mutations';
 
-import { root } from '../../..';
-import App from '../../../App';
+import { root } from '../../../..';
+import App from '../../../../App';
 import { BrowserRouter } from 'react-router-dom';
 
 function MyActiveTasks({ myActiveTasks }) {

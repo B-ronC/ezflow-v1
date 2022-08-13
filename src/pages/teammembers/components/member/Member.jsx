@@ -2,13 +2,13 @@ import './member.css'
 import React, { useState } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listUserTeams, listUserTasks, listTasks } from '../../../graphql/queries';
-import { deleteUserTeams, deleteUserTasks, deleteTask } from '../../../graphql/mutations';
+import { listUserTeams, listUserTasks, listTasks } from '../../../../graphql/queries';
+import { deleteUserTeams, deleteUserTasks, deleteTask } from '../../../../graphql/mutations';
 
 import TaskPopup from '../taskPopup/TaskPopup';
 
-import { root } from '../../..';
-import App from '../../../App';
+import { root } from '../../../..';
+import App from '../../../../App';
 import { BrowserRouter } from 'react-router-dom';
 
 function Member({ user, member, owner, teamid }) {

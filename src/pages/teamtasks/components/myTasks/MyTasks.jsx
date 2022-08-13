@@ -1,10 +1,10 @@
 import React from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { updateTask } from '../../../graphql/mutations';
-import FromUser from '../../taskPageComponents/fromUser/FromUser';
+import { updateTask } from '../../../../graphql/mutations';
+import FromUser from '../fromUser/FromUser';
 
-import { root } from '../../..';
-import App from '../../../App';
+import { root } from '../../../..';
+import App from '../../../../App';
 import { BrowserRouter } from 'react-router-dom';
 
 function MyTasks({ myTasks }) {

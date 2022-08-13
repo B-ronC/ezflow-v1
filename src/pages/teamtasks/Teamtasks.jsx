@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import Teamnavbar from "../../components/teamnavbar/Teamnavbar";
 import MyActiveTasks from "./components/myActiveTasks/MyActiveTasks";
-import MyTasks from "./components/myTasks/MyTasks";
+import MyWaitingTasks from "./components/myWaitingTasks/MyWaitingTasks";
 import MyCreatedTasks from "./components/myCreatedTasks/MyCreatedTasks";
 
 import { useParams } from "react-router-dom";
@@ -17,10 +17,10 @@ function Teamtasks({ user }) {
   const { currTeamID } = useParams();
 
   const [activeTasks, setActiveTasks] = useState([]);
-  const [tasks, setTasks] = useState([]);
+  const [waitingTasks, setWaitingTasks] = useState([]);
   const [createdTasks, setCreatedTasks] = useState([]);
 
-  // updates task list
+  // updates active and waiting task lists
   function updateTasks() {
     try {
       const fetchTasks = async () => {
@@ -33,13 +33,13 @@ function Teamtasks({ user }) {
             },
           })
         );
-        console.log("fetching my assigned tasks - tasks");
+        console.log("fetching assigned tasks - tasks");
         const userTaskList = userTaskData.data.listUserTasks.items;
 
         return userTaskList;
       };
       fetchTasks().then((userTaskList) => {
-        setTasks(
+        setWaitingTasks(
           userTaskList.filter((value) => {
             return value.task.teamID === currTeamID && value.task.status === 0;
           })
@@ -55,7 +55,7 @@ function Teamtasks({ user }) {
     }
   }
 
-  // updates my created task list
+  // updates created task list
   function updateCreatedTasks() {
     try {
       const fetchCreatedTasks = async () => {
@@ -68,7 +68,7 @@ function Teamtasks({ user }) {
             },
           })
         );
-        console.log("fetching my created tasks - tasks");
+        console.log("fetching created tasks - tasks");
         const taskList = taskData.data.listTasks.items;
 
         return taskList;
@@ -85,6 +85,7 @@ function Teamtasks({ user }) {
     }
   }
 
+  // updates task lists on render
   useEffect(() => {
     updateTasks();
     updateCreatedTasks();
@@ -99,7 +100,7 @@ function Teamtasks({ user }) {
       </div>
       <div>
         <h2>My Waiting Tasks:</h2>
-        <MyTasks myTasks={tasks} />
+        <MyWaitingTasks myWaitingTasks={waitingTasks} />
       </div>
       <div>
         <h2>My Created Tasks:</h2>

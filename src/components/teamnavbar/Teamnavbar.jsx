@@ -1,27 +1,10 @@
 import "./teamnavbar.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { Link } from "react-router-dom";
 import { getTeam } from "../../graphql/queries";
-import { teamIDContextTask } from "../../pages/teamtasks/Teamtasks";
-import { teamIDContextMem } from "../../pages/teammembers/Teammembers";
-import { teamIDContextSet } from "../../pages/teamsettings/Teamsettings";
 
-function Teamnavbar() {
-  const teamIDTask = useContext(teamIDContextTask);
-  const teamIDMem = useContext(teamIDContextMem);
-  const teamIDSet = useContext(teamIDContextSet);
-
-  // passes team id of prev page to next page
-  let currTeamID;
-  if (teamIDTask !== undefined) {
-    currTeamID = teamIDTask;
-  } else if (teamIDMem !== undefined) {
-    currTeamID = teamIDMem;
-  } else {
-    currTeamID = teamIDSet;
-  }
-
+function Teamnavbar({ currTeamID }) {
   // team name state
   const [team, setTeam] = useState([]);
 

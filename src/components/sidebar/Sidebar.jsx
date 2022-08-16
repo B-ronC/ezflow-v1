@@ -98,7 +98,19 @@ function Sidebar({ user, signOut }) {
                 key={team.id}
                 to={`/teamPage/${team.teamID}/tasks`}
                 style={{ textDecoration: "none" }}
-                className={({ isActive }) => (isActive ? "active" : "inactive")}
+                className={() =>
+                  window.location.href.includes(
+                    `/teamPage/${team.teamID}/tasks`
+                  ) ||
+                  window.location.href.includes(
+                    `/teamPage/${team.teamID}/members`
+                  ) ||
+                  window.location.href.includes(
+                    `/teamPage/${team.teamID}/settings`
+                  )
+                    ? "active"
+                    : "inactive"
+                }
               >
                 <PeopleOutlineIcon
                   style={{ fontSize: 45 }}

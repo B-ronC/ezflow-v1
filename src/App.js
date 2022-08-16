@@ -35,9 +35,6 @@ function App({ signOut }) {
           />
         </Routes>
       </div>
-      <Link to={"/"}>
-        <button onClick={signOut}>Sign out</button>
-      </Link>
     </>
   );
 }

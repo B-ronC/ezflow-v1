@@ -1,13 +1,14 @@
 import "./sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
 import { listUserTeams } from "../../graphql/queries";
 import { createTeam, createUserTeams } from "../../graphql/mutations";
 import React, { useEffect, useState } from "react";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 
 import { withAuthenticator } from "@aws-amplify/ui-react";
 
-function Sidebar({ user }) {
+function Sidebar({ user, signOut }) {
   // team list state
   const [myTeamList, setMyTeamList] = useState([]);
 
@@ -93,15 +94,25 @@ function Sidebar({ user }) {
               return 0;
             })
             .map((team) => (
-              <Link
+              <NavLink
                 key={team.id}
                 to={`/teamPage/${team.teamID}/tasks`}
                 style={{ textDecoration: "none" }}
+                className={({ isActive }) => (isActive ? "active" : "inactive")}
               >
-                <div className="row">{team.team.name}</div>
-              </Link>
+                <PeopleOutlineIcon
+                  style={{ fontSize: 45 }}
+                  className="teamPic"
+                />
+                {team.team.name}
+              </NavLink>
             ))}
         </main>
+        <Link to={"/"}>
+          <button className="signout" onClick={signOut}>
+            Sign out
+          </button>
+        </Link>
       </div>
     </div>
   );

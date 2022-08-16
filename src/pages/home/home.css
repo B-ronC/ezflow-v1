@@ -1,4 +1,32 @@
 .home {
+    width: 100%;
     flex: 5;
-    background-color: slateblue;
+    background-color: rgb(160, 160, 160);
+    padding: 60px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.count {
+    border-style: none;
+    border-width: 1px;
+    border-radius: 8px;
+    width: 30%;
+    height: 40%;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: rgb(230, 230, 230);
+    color: darkslateblue;
+    display: flex;
+}
+
+.count h1 {
+    font-size: 40px;
+}
+
+.count h2 {
+    position: relative;
+    left: -5%;
+    bottom: -50%;
+    font-size: 70px;
 }

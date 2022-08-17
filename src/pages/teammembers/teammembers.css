@@ -1,6 +1,10 @@
 .Teammembers {
     flex: 5;
-    background-color: slateblue;
+    background-image: linear-gradient(rgb(103, 88, 203), rgb(215, 210, 252));
+}
+
+.Teammembers h3 {
+    margin-left: 3px;
 }
 
 .memberHeader {

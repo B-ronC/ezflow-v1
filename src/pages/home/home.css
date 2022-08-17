@@ -1,7 +1,7 @@
 .home {
     width: 100%;
     flex: 5;
-    background-color: rgb(160, 160, 160);
+    background-image: linear-gradient(rgb(103, 88, 203), rgb(215, 210, 252));
     padding: 60px 20px;
     display: flex;
     justify-content: space-between;
@@ -10,14 +10,15 @@
 .count {
     border-style: none;
     border-width: 1px;
-    border-radius: 8px;
+    border-radius: 20px;
     width: 30%;
     height: 40%;
     margin: 10px;
     padding: 10px 20px;
-    background-color: rgb(230, 230, 230);
+    background-color: white;
     color: darkslateblue;
     display: flex;
+    box-shadow: 3px 5px 20px;
 }
 
 .count h1 {

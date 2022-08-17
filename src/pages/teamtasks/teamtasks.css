@@ -1,6 +1,6 @@
 .Teamtasks {
     flex: 5;
-    background-color: rgb(160, 160, 160);
+    background-image: linear-gradient(rgb(103, 88, 203), rgb(215, 210, 252));
 }
 
 .taskWrapper {
@@ -12,18 +12,22 @@
     width: 30%; 
     margin: 15px 30px;
     color: rgb(47, 41, 90);
-    background-color: rgb(165, 165, 165);
     padding: 10px;
     border-radius: 12px;
+    background-color: rgb(200, 192, 250);
+    box-shadow: 1px 3px 10px;
 }
 
 .task {
     color: black;
     border-radius: 8px;
-    margin: 10px 15px;
+    margin: 15px 10px;
     padding: 7px;
-    background-color: rgb(230, 230, 230);
+    background-color: white;
     font-size: 18px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(103, 88, 203);
 }
 
 .title {
@@ -71,7 +75,16 @@
 }
 
 .task button {
-    margin: 5px;
-    border-radius: 4px;
-    border-width: 1px;
+    margin-top: 7px;
+    border-radius: 8px;
+    border-style: none;
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(103, 88, 203);
+    color: white;
+    cursor: pointer;
+}
+
+.task button:hover {
+    background-color: darkslateblue;
 }

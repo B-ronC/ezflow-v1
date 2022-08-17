@@ -2,7 +2,7 @@
     flex: 1;
     position: relative;
     height: 100vh;
-    background-color: rgb(230, 230, 230);
+    background-color: white;
 }
 
 .sidebarMenu {
@@ -78,4 +78,9 @@
     left: 50%;
     transform: translate(-50%, 0%);
     width: 30%;
+    border-radius: 12px;
+    border-style: none;
+    background-color: darkslateblue;
+    color: white;
+    padding: 3px 5px;
 }

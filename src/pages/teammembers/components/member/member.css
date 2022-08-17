@@ -7,16 +7,22 @@
     border-style: solid;
     border-width: 1px;
     border-radius: 4px;
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .assignBtn {
-    border-radius: 3px;
-    border-width: 1px;
+    background-color: rgb(103, 88, 203);
+    color: white;
+    border-radius: 8px;
+    border-style: none;
+    cursor: pointer;
 }
 
 .removeBtn {
-    background-color: rgb(255, 23, 23);
-    border-radius: 3px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 8px;
     border-width: 1px;
+    border-style: none;
+    color: white;
+    cursor: pointer;
 }

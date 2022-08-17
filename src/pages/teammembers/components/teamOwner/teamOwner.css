@@ -4,13 +4,16 @@
     justify-content: space-between;
     padding: 5px 25px;
     margin: 3px;
-    border-style: solid;
+    border-style: none;
     border-width: 1px;
     border-radius: 4px;
-    background-color: rgba(245, 245, 245, 0.747);
+    background-color: rgb(230, 230, 230);
 }
 
-.assignBtn {
-    border-radius: 3px;
-    border-width: 1px;
+.owner button {
+    background-color: rgb(103, 88, 203);
+    color: white;
+    border-radius: 8px;
+    border-style: none;
+    cursor: pointer;
 }

@@ -36,9 +36,7 @@ function TeamOwner({ owner }) {
     <div className="owner">
       <div className="name">{teamOwner.name}</div>
       <div className="email">{teamOwner.email}</div>
-      <button className="assignBtn" onClick={() => setIsOpen(true)}>
-        Assign Task
-      </button>
+      <button onClick={() => setIsOpen(true)}>Assign Task</button>
       <TaskPopup
         open={isOpen}
         onClose={() => setIsOpen(false)}

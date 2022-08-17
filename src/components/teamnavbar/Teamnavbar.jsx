@@ -1,7 +1,7 @@
 import "./teamnavbar.css";
 import React, { useState, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getTeam } from "../../graphql/queries";
 
 function Teamnavbar({ currTeamID }) {
@@ -34,35 +34,44 @@ function Teamnavbar({ currTeamID }) {
   }, [currTeamID]);
 
   return (
-    <nav className="nav">
+    <div className="nav">
       <h1>{team.name}</h1>
       <ul>
         <li>
-          <Link
+          <NavLink
             to={`/teamPage/${currTeamID}/tasks`}
             style={{ textDecoration: "none" }}
+            className={({ isActive }) =>
+              isActive ? "activeTeam" : "inactiveTeam"
+            }
           >
             <h4>My Tasks</h4>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to={`/teamPage/${currTeamID}/members`}
             style={{ textDecoration: "none" }}
+            className={({ isActive }) =>
+              isActive ? "activeTeam" : "inactiveTeam"
+            }
           >
             <h4>Members</h4>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to={`/teamPage/${currTeamID}/settings`}
             style={{ textDecoration: "none" }}
+            className={({ isActive }) =>
+              isActive ? "activeTeam" : "inactiveTeam"
+            }
           >
             <h4>Settings</h4>
-          </Link>
+          </NavLink>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 }
 

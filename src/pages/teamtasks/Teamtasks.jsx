@@ -18,7 +18,7 @@ function Teamtasks({ user }) {
   const [waitingTasks, setWaitingTasks] = useState([]);
   const [createdTasks, setCreatedTasks] = useState([]);
 
-  // updates active and waiting task lists
+  // updates active task and waiting task lists
   const updateTasks = () => {
     try {
       const fetchTasks = async () => {

@@ -3,9 +3,75 @@
     background-color: rgb(160, 160, 160);
 }
 
+.taskWrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.taskBox {
+    width: 30%; 
+    margin: 15px 30px;
+    color: rgb(47, 41, 90);
+    background-color: rgb(165, 165, 165);
+    padding: 10px;
+    border-radius: 12px;
+}
+
 .task {
-    border: 1px solid;
-    margin: 3px;
-    padding: 3px;
-    background-color: lightgrey;
+    color: black;
+    border-radius: 8px;
+    margin: 10px 15px;
+    padding: 7px;
+    background-color: rgb(230, 230, 230);
+    font-size: 18px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.title h4 {
+    margin-right: 5px;
+}
+
+.title div {
+    font-size: 16px;
+}
+
+.to {
+    display: flex;
+    align-items: center;
+}
+
+.to h4 {
+    margin-right: 5px;
+}
+
+.to div {
+    font-size: 16px;
+}
+
+.desc {
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+}
+
+.stat h4 {
+    margin-right: 5px;
+}
+
+.stat div {
+    font-size: 16px;
+}
+
+.task button {
+    margin: 5px;
+    border-radius: 4px;
+    border-width: 1px;
 }

@@ -26,14 +26,16 @@ function MyActiveTasks({ myActiveTasks }) {
         })
         .map((task) => (
           <div key={task.task.id} className="task">
-            <h4>From:</h4>
-            <div>
+            <div className="title">
+              <h4>Title:</h4>
+              <div>{task.task.title}</div>
+            </div>
+            <div className="to">
+              <h4>From:</h4>
               <FromUser userid={task.task.from} />
             </div>
-            <h4>Title:</h4>
-            <div>{task.task.title}</div>
             <h4>Description:</h4>
-            <div>{task.task.description}</div>
+            <div className="desc">{task.task.description}</div>
             <button
               onClick={async () => {
                 try {

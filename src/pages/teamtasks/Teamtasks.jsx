@@ -92,17 +92,19 @@ function Teamtasks({ user }) {
   return (
     <div className="Teamtasks">
       <Teamnavbar currTeamID={currTeamID} />
-      <div>
-        <h2>My Active Tasks:</h2>
-        <MyActiveTasks myActiveTasks={activeTasks} />
-      </div>
-      <div>
-        <h2>My Waiting Tasks:</h2>
-        <MyWaitingTasks myWaitingTasks={waitingTasks} />
-      </div>
-      <div>
-        <h2>My Created Tasks:</h2>
-        <MyCreatedTasks myCreatedTasks={createdTasks} />
+      <div className="taskWrapper">
+        <div className="taskBox">
+          <h2>My Active Tasks:</h2>
+          <MyActiveTasks myActiveTasks={activeTasks} />
+        </div>
+        <div className="taskBox">
+          <h2>My Waiting Tasks:</h2>
+          <MyWaitingTasks myWaitingTasks={waitingTasks} />
+        </div>
+        <div className="taskBox">
+          <h2>My Created Tasks:</h2>
+          <MyCreatedTasks myCreatedTasks={createdTasks} />
+        </div>
       </div>
     </div>
   );

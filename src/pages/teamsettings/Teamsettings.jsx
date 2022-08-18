@@ -130,16 +130,22 @@ function Teamsettings({ user }) {
   return (
     <div className="Teamsettings">
       <Teamnavbar currTeamID={currTeamID} />
-      <Link to={"/"}>
-        <button className="leave" id="lbtn" onClick={leaveTeam}>
-          Leave
-        </button>
-      </Link>
-      <Link to={"/"}>
-        <button className="delete" id="btn" onClick={deleteTeamF}>
-          Delete
-        </button>
-      </Link>
+      <div className="box">
+        <h2>Leave team:</h2>
+        <Link to={"/"}>
+          <button id="lbtn" onClick={leaveTeam}>
+            Leave
+          </button>
+        </Link>
+      </div>
+      <div className="box">
+        <h2>Delete team:</h2>
+        <Link to={"/"}>
+          <button id="btn" onClick={deleteTeamF}>
+            Delete
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@
     border-width: 1px;
     border-radius: 4px;
     background-color: white;
+    font-weight: 600;
 }
 
 .assignBtn {
@@ -16,13 +17,17 @@
     border-radius: 8px;
     border-style: none;
     cursor: pointer;
+    padding: 3px 15px;
+    font-size: 13px;
 }
 
 .removeBtn {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 50, 50);
     border-radius: 8px;
     border-width: 1px;
     border-style: none;
     color: white;
     cursor: pointer;
+    padding: 3px 15px;
+    font-size: 13px;
 }

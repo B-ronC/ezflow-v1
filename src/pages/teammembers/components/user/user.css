@@ -9,6 +9,7 @@
     background-color: rgb(230, 230, 230);
     border-width: 1px;
     border-color: gray;
+    font-weight: 600;
 }
 
 .user button {
@@ -19,4 +20,6 @@
     border-color: green;
     border-width: 1px;
     cursor: pointer;
+    padding: 3px 15px;
+    font-size: 13px;
 }

@@ -59,11 +59,15 @@ function TaskPopup({ user, open, onClose, taskMem }) {
             placeholder="Enter a description"
             name="description"
           ></textarea>
-          <div>
-            <button>Create Task</button>
+          <div className="formbox">
+            <button className="cancel" onClick={onClose}>
+              Cancel
+            </button>
+            <button type="submit" className="create">
+              Create Task
+            </button>
           </div>
         </form>
-        <button onClick={onClose}>Cancel</button>
       </div>
     </>,
     document.getElementById("portal")

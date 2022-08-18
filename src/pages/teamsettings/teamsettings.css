@@ -1,11 +1,27 @@
 .Teamsettings {
     flex: 5;
-    background-color: slateblue;
+    background-image: linear-gradient(rgb(103, 88, 203), rgb(215, 210, 252));
 }
 
-.delete {
+.box {
+    display: flex;
+    align-items: center;
     margin: 10px;
-    background-color: rgb(255, 23, 23);
-    border-radius: 3px;
-    border-width: 1px;
+}
+
+.Teamsettings button {
+    margin: 10px;
+    background-color: rgb(255, 50, 50);
+    border-radius: 4px;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 15px;
+    font-size: 14px;
+}
+
+.Teamsettings button:disabled {
+    background-color: rgb(177, 177, 177);
+    color: gray;
+    cursor: default;
 }

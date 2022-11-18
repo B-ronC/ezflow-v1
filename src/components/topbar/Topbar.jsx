@@ -14,7 +14,10 @@ function Topbar({ user }) {
           </Link>
         </div>
         <div className="profile">
-          <AccountCircleIcon style={{ fontSize: 30 }} className="profileIcon" />
+          <AccountCircleIcon
+            style={{ fontSize: "4vh" }}
+            className="profileIcon"
+          />
           <span className="userName">{user.attributes.name}</span>
         </div>
       </div>

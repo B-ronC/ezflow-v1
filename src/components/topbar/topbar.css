@@ -1,8 +1,8 @@
 .topbar {
     width: 100vw;
-    height: 5vh;
+    height: 6.5vh;
     background-color: rgb(230, 230, 230);
-    position: relative;
+    position: fixed;
 }
 
 .topbarWrapper {
@@ -16,7 +16,7 @@
 }
 
 .logoName {
-    font-size: 4vh;
+    font-size: 5vh;
     font-weight: bold;
     color: darkslateblue;
     cursor: pointer;
@@ -33,7 +33,7 @@
 }
 
 .userName {
-    font-size: 2vh;
+    font-size: 3vh;
     font-weight: 600;
     color: rgb(70, 70, 70);
 }

@@ -1,5 +1,4 @@
 .home {
-    width: 100%;
     flex: 5;
     background-image: linear-gradient(rgb(103, 88, 203), rgb(215, 210, 252));
     padding: 60px 20px;

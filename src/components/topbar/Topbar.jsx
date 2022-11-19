@@ -10,15 +10,15 @@ function Topbar({ user }) {
       <div className="topbarWrapper">
         <div className="logo">
           <Link to="/" style={{ textDecoration: "none" }}>
-            <span className="logoName">ezflow</span>
+            <h1 className="logoName">ezflow</h1>
           </Link>
         </div>
         <div className="profile">
           <AccountCircleIcon
-            style={{ fontSize: "4vh" }}
+            style={{ fontSize: "5vh" }}
             className="profileIcon"
           />
-          <span className="userName">{user.attributes.name}</span>
+          <h1 className="userName">{user.attributes.name}</h1>
         </div>
       </div>
     </div>

@@ -45,17 +45,21 @@ function Topbar({ user }) {
 
   return (
     <div className="home">
-      <div className="count">
-        <h1>Total Active Tasks:</h1>
-        <h2>{totalActiveTasks.length}</h2>
-      </div>
-      <div className="count">
-        <h1>Total Waiting Tasks:</h1>
-        <h2>{totalWaitingTasks.length}</h2>
-      </div>
-      <div className="count">
-        <h1>Total Created Tasks:</h1>
-        <h2>{totalCreatedTasks.length}</h2>
+      <div className="homeContainer">
+        <ul>
+          <div className="count">
+            <h1>Total Active Tasks:</h1>
+            <h2>{totalActiveTasks.length}</h2>
+          </div>
+          <div className="count">
+            <h1>Total Waiting Tasks:</h1>
+            <h2>{totalWaitingTasks.length}</h2>
+          </div>
+          <div className="count">
+            <h1>Total Created Tasks:</h1>
+            <h2>{totalCreatedTasks.length}</h2>
+          </div>
+        </ul>
       </div>
     </div>
   );

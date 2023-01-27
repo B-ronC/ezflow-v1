@@ -113,7 +113,7 @@ function Sidebar({ user, signOut }) {
                 }
               >
                 <PeopleOutlineIcon
-                  style={{ fontSize: "4vh" }}
+                  style={{ fontSize: "4vmin" }}
                   className="teamPic"
                 />
                 {team.team.name}

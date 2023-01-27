@@ -1,32 +1,40 @@
+* {
+    padding: 0;
+}
+
 .home {
     flex: 5;
+    height: 93.5vh;
     background-image: linear-gradient(rgb(103, 88, 203), rgb(215, 210, 252));
-    padding: 60px 20px;
+}
+
+.homeContainer {
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
 
 .count {
     border-style: none;
-    border-width: 1px;
-    border-radius: 20px;
-    width: 30%;
-    height: 40%;
-    margin: 10px;
-    padding: 10px 20px;
+    border-radius: 2vmin;
+    width: 65vw;
+    height: 25vh;
+    padding: 0 3vw;
+    margin: 3.5vh 0;
     background-color: white;
     color: darkslateblue;
+    box-shadow: .5vw .75vh 3vmin;
     display: flex;
-    box-shadow: 3px 5px 20px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .count h1 {
-    font-size: 40px;
+    font-size: 5vmin;
 }
 
 .count h2 {
-    position: relative;
-    left: -5%;
-    bottom: -50%;
-    font-size: 70px;
+    font-size: 6vmin;
 }

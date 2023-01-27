@@ -1,22 +1,22 @@
 .topbar {
-    width: 100vw;
+    width: 100%;
     height: 6.5vh;
     background-color: rgb(230, 230, 230);
-    position: fixed;
+    position: sticky;
+    top: 0;
 }
 
 .topbarWrapper {
     height: 100%;
     width: 100%;
-    padding-left: .75vw;
-    padding-right: 1.5vw;
+    padding: 1.5vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .logoName {
-    font-size: 5vh;
+    font-size: 5vmin;
     font-weight: bold;
     color: darkslateblue;
     cursor: pointer;
@@ -24,7 +24,7 @@
 
 .profile {
     display: flex;
-    align-items: center;
+    place-items: center;
 }
 
 .profileIcon {
@@ -33,7 +33,7 @@
 }
 
 .userName {
-    font-size: 3vh;
+    font-size: 3vmin;
     font-weight: 600;
     color: rgb(70, 70, 70);
 }

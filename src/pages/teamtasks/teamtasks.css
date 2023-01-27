@@ -1,5 +1,10 @@
+* {
+    padding: 0;
+}
+
 .Teamtasks {
     flex: 5;
+    height: 93.5vh;
     background-image: linear-gradient(rgb(103, 88, 203), rgb(215, 210, 252));
 }
 
@@ -9,24 +14,23 @@
 }
 
 .taskBox {
+    font-size: 2.25vmin;
     width: 30%; 
-    margin: 15px 30px;
-    color: rgb(47, 41, 90);
-    padding: 10px;
-    border-radius: 12px;
-    background-color: rgb(200, 192, 250);
-    box-shadow: 1px 3px 10px;
+    margin: 1.5vmin;
+    color: rgb(15, 10, 50);
 }
 
 .task {
     color: black;
-    border-radius: 8px;
-    margin: 15px 10px;
-    padding: 7px;
+    border-radius: 1.25vmin;
+    box-shadow: 0 .25vmin 1.5vmin;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+    padding: 1.25vmin;
     background-color: white;
-    font-size: 18px;
+    font-size: 2.5vmin;
     border-style: solid;
-    border-width: 3px;
+    border-width: .4vmin;
     border-color: rgb(103, 88, 203);
     font-weight: 600;
 }
@@ -37,11 +41,11 @@
 }
 
 .title h4 {
-    margin-right: 5px;
+    margin-right: .5vw;
 }
 
 .title div {
-    font-size: 16px;
+    font-size: 2.25vmin;
 }
 
 .to {
@@ -50,16 +54,15 @@
 }
 
 .to h4 {
-    margin-right: 5px;
+    margin-right: .5vw;
 }
 
 .to div {
-    font-size: 16px;
+    font-size: 2.25vmin;
 }
 
 .desc {
-    margin-left: 5px;
-    font-size: 16px;
+    font-size: 2.25vmin;
 }
 
 .stat {
@@ -68,19 +71,19 @@
 }
 
 .stat h4 {
-    margin-right: 5px;
+    margin-right: .5vw;
 }
 
 .stat div {
-    font-size: 16px;
+    font-size: 2.25vmin;
 }
 
 .task button {
-    margin-top: 7px;
-    border-radius: 8px;
+    margin-top: 1vh;
+    border-radius: 1.25vmin;
     border-style: none;
-    font-size: 16px;
-    padding: 5px;
+    font-size: 2.25vmin;
+    padding: .75vmin;
     background-color: rgb(103, 88, 203);
     color: white;
     cursor: pointer;

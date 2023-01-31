@@ -6,18 +6,19 @@
 .box {
     display: flex;
     align-items: center;
-    margin: 10px;
+    margin: 2vmin;
+    font-size: 2.5vmin;
 }
 
 .Teamsettings button {
-    margin: 10px;
+    margin-left: 2vmin;
     background-color: rgb(255, 50, 50);
-    border-radius: 4px;
+    border-radius: .75vmin;
     border-style: none;
     color: white;
     cursor: pointer;
-    padding: 5px 15px;
-    font-size: 14px;
+    padding: 1vh 1vw;
+    font-size: 2vmin;
 }
 
 .Teamsettings button:disabled {

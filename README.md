@@ -1,2 +1,12 @@
 
 ![](images/home.png)
+![](images/createTeam.png)
+![](images/teamMembers.png)
+![](images/createTask.png)
+![](images/teamTasks1.png)
+![](images/home1.png)
+![](images/teamTasks2.png)
+![](images/home2.png)
+![](images/teamTasks3.png)
+![](images/home3.png)
+![](images/teamSettings.png)

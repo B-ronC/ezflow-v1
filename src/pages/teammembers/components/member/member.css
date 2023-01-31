@@ -2,32 +2,30 @@
     display: flex;
     place-items: center;
     justify-content: space-between;
-    padding: 5px 25px;
-    margin: 3px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 4px;
+    padding: .75vh 1.5vw;
+    margin: 1vmin;
+    border-radius: 1.25vmin;
     background-color: white;
     font-weight: 600;
+    font-size: 2.25vmin;
 }
 
 .assignBtn {
     background-color: rgb(103, 88, 203);
     color: white;
-    border-radius: 8px;
+    border-radius: 1.25vmin;
     border-style: none;
     cursor: pointer;
-    padding: 3px 15px;
-    font-size: 13px;
+    padding: .75vmin;
+    font-size: 2vmin;
 }
 
 .removeBtn {
     background-color: rgb(255, 50, 50);
-    border-radius: 8px;
-    border-width: 1px;
+    border-radius: 1.25vmin;
     border-style: none;
     color: white;
     cursor: pointer;
-    padding: 3px 15px;
-    font-size: 13px;
+    padding: .75vmin;
+    font-size: 2vmin;
 }

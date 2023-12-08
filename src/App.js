@@ -7,7 +7,7 @@ import Teamtasks from "./pages/teamtasks/Teamtasks";
 import Teammembers from "./pages/teammembers/Teammembers";
 import Teamsettings from "./pages/teamsettings/Teamsettings";
 
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import "@aws-amplify/ui-react/styles.css";
 import { Amplify } from "aws-amplify";
@@ -16,15 +16,21 @@ import awsExports from "./aws-exports";
 
 Amplify.configure(awsExports);
 
-function App({ signOut }) {
+function App() {
   return (
-    <>
+    <div>
       <Topbar />
       <div className="container">
         <Sidebar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/teamPage/:currTeamID/tasks" element={<Teamtasks />} />
+          <Route 
+            path="/" 
+            element={<Home />} 
+          />
+          <Route 
+            path="/teamPage/:currTeamID/tasks" 
+            element={<Teamtasks />} 
+          />
           <Route
             path="/teamPage/:currTeamID/members"
             element={<Teammembers />}
@@ -35,7 +41,7 @@ function App({ signOut }) {
           />
         </Routes>
       </div>
-    </>
+    </div>
   );
 }
 

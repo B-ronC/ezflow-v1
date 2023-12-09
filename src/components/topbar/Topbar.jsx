@@ -1,28 +1,17 @@
 import "./topbar.css";
 import React from "react";
-import { Link } from "react-router-dom";
-import { withAuthenticator } from "@aws-amplify/ui-react";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Logo from "./components/logo/Logo";
+import Profile from "./components/profile/Profile";
 
-function Topbar({ user }) {
+function Topbar() {
   return (
     <div className="topbar">
       <div className="topbarWrapper">
-        <div className="logo">
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <h1 className="logoName">ezflow</h1>
-          </Link>
-        </div>
-        <div className="profile">
-          <AccountCircleIcon
-            style={{ fontSize: "5vmin" }}
-            className="profileIcon"
-          />
-          <h1 className="userName">{user.attributes.name}</h1>
-        </div>
+        <Logo />
+        <Profile />
       </div>
     </div>
   );
 }
 
-export default withAuthenticator(Topbar);
+export default Topbar;

@@ -14,26 +14,3 @@
     align-items: center;
     justify-content: space-between;
 }
-
-.logoName {
-    font-size: 5vmin;
-    font-weight: bold;
-    color: darkslateblue;
-    cursor: pointer;
-}
-
-.profile {
-    display: flex;
-    place-items: center;
-}
-
-.profileIcon {
-    color: darkslateblue;
-    margin-right: .25vw;
-}
-
-.userName {
-    font-size: 3vmin;
-    font-weight: 600;
-    color: rgb(70, 70, 70);
-}

@@ -1,0 +1,17 @@
+.createTitle {
+  font-size: 3vmin;
+  color: white;
+  background-color: darkslateblue;
+  border-style: none;
+  border-radius: 1.5vmin;
+  padding: 1vmin;
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+  cursor: pointer;
+}
+
+.createTitle:hover {
+  transition-duration: 0.3s;
+  color: white;
+  background-color: rgb(64, 54, 124);
+}

@@ -1,0 +1,12 @@
+.inactiveTeam h4 {
+  color: white;
+}
+
+.inactiveTeam h4:hover,
+.activeTeam h4 {
+  border-radius: 1.25vmin;
+  padding: 0.4vmin;
+  background-color: white;
+  color: darkslateblue;
+  margin: -0.4vmin;
+}

@@ -1,41 +1,22 @@
 .nav {
-    height: 6vh;
-    display: flex;
-    align-items: center;
-    padding-left: 1vw;
-    padding-right: 4vw;
-    background-color: darkslateblue;
-    border-radius: 1.25vmin;
-    margin: 1.5vmin;
-    box-shadow: 0 .25vmin 1.5vmin;
-}
-
-.nav h1 {
-    white-space: nowrap;
-    color: white;
-    font-size: 4vmin;
-    margin-right: 4vw;
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  padding-left: 1vw;
+  padding-right: 4vw;
+  background-color: darkslateblue;
+  border-radius: 1.25vmin;
+  margin: 1.5vmin;
+  box-shadow: 0 0.25vmin 1.5vmin;
 }
 
 .nav ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 2.5vmin;
-}
-
-.inactiveTeam h4 {
-    color: white;
-}
-
-.inactiveTeam h4:hover, .activeTeam h4 {
-    border-radius: 1.25vmin;
-    padding: .4vmin;
-    background-color: white;
-    color: darkslateblue;
-    margin: -0.4vmin;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2.5vmin;
 }

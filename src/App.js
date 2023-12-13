@@ -23,14 +23,8 @@ function App() {
       <div className="container">
         <Sidebar />
         <Routes>
-          <Route 
-            path="/" 
-            element={<Home />} 
-          />
-          <Route 
-            path="/teamPage/:currTeamID/tasks" 
-            element={<Teamtasks />} 
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/teamPage/:currTeamID/tasks" element={<Teamtasks />} />
           <Route
             path="/teamPage/:currTeamID/members"
             element={<Teammembers />}

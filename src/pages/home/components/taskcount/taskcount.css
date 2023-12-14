@@ -1,0 +1,23 @@
+.count {
+  border-style: none;
+  border-radius: 2vmin;
+  width: 65vw;
+  height: 25vh;
+  padding: 0 3vw;
+  margin: 3.5vh 0;
+  background-color: white;
+  box-shadow: 0.5vw 0.75vh 3vmin;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.count h1 {
+  font-size: 5vmin;
+  color: darkslateblue;
+}
+
+.count h2 {
+  font-size: 6vmin;
+  color: darkslateblue;
+}

@@ -14,7 +14,7 @@ function Sidebar({ user }) {
   // updates team list on render
   useEffect(() => {
     updateTeams(user, setMyTeamList);
-  }, [user]);
+  }, []);
 
   return (
     <div className="sidebar">

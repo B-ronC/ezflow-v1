@@ -2,14 +2,16 @@ import "./home.css";
 import React, { useState, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { listTasks } from "../../graphql/queries";
-
 import { withAuthenticator } from "@aws-amplify/ui-react";
+
+import Taskcount from "./components/taskcount/Taskcount";
 
 function Topbar({ user }) {
   const [totalActiveTasks, setTotalActiveTasks] = useState([]);
   const [totalWaitingTasks, setTotalWaitingTasks] = useState([]);
   const [totalCreatedTasks, setTotalCreatedTasks] = useState([]);
 
+  // fetches all user's tasks and sets active, waiting, created task states
   const updateTasks = () => {
     const fetchTasks = async () => {
       const taskData = await API.graphql(graphqlOperation(listTasks));
@@ -43,6 +45,7 @@ function Topbar({ user }) {
       });
   };
 
+  // updates user's tasks on render
   useEffect(() => {
     updateTasks();
   }, []);
@@ -51,18 +54,24 @@ function Topbar({ user }) {
     <div className="home">
       <div className="homeContainer">
         <ul>
-          <div className="count">
-            <h1>Total Active Tasks:</h1>
-            <h2>{totalActiveTasks.length}</h2>
-          </div>
-          <div className="count">
-            <h1>Total Waiting Tasks:</h1>
-            <h2>{totalWaitingTasks.length}</h2>
-          </div>
-          <div className="count">
-            <h1>Total Created Tasks:</h1>
-            <h2>{totalCreatedTasks.length}</h2>
-          </div>
+          <li>
+            <Taskcount
+              taskType={"Total Active Tasks:"}
+              count={totalActiveTasks.length}
+            />
+          </li>
+          <li>
+            <Taskcount
+              taskType={"Total Waiting Tasks:"}
+              count={totalWaitingTasks.length}
+            />
+          </li>
+          <li>
+            <Taskcount
+              taskType={"Total Created Tasks:"}
+              count={totalCreatedTasks.length}
+            />
+          </li>
         </ul>
       </div>
     </div>

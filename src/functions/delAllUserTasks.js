@@ -1,6 +1,6 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { listTasks, listUserTasks } from "../../graphql/queries";
-import { deleteUserTasks, deleteTask } from "../../graphql/mutations";
+import { listTasks, listUserTasks } from "../graphql/queries";
+import { deleteUserTasks, deleteTask } from "../graphql/mutations";
 
 // deletes all tasks connected to user
 const delAllUserTasks = async (currTeamID, userID) => {

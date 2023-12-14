@@ -1,22 +1,18 @@
 import "./teamsettings.css";
 import React, { useEffect } from "react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
-import { listUserTeams, getTeam } from "../../graphql/queries";
-import { deleteTeam, deleteUserTeams } from "../../graphql/mutations";
 import Teamnavbar from "../../components/teamnavbar/Teamnavbar";
-import delAllUserTasks from "../../functions/delAllUserTasks/delAllUserTasks";
-import delAllTeamTasks from "../../functions/delAllTeamTasks/delAllTeamTasks";
+import { getTeam } from "../../graphql/queries";
 
-import { root } from "../..";
-import App from "../../App";
-import { BrowserRouter } from "react-router-dom";
+import Leavebutton from "./components/leavebutton/Leavebutton";
+import Deletebutton from "./components/deletebutton/Deletebutton";
 
 function Teamsettings({ user }) {
   const { currTeamID } = useParams();
 
-  // enables / disables delete button if user is owner
+  // enables/disables leave/delete button if user is owner
   const checkOwner = async () => {
     try {
       const teamData = await API.graphql(
@@ -44,108 +40,11 @@ function Teamsettings({ user }) {
     checkOwner();
   }, []);
 
-  // removes member and related tasks when leave
-  const leaveTeam = async () => {
-    try {
-      const userTeamData = await API.graphql(
-        graphqlOperation(listUserTeams, {
-          filter: {
-            userID: {
-              eq: user.attributes.sub,
-            },
-          },
-        })
-      );
-      console.log("fetching user team to delete - settings");
-      const userTeam = userTeamData.data.listUserTeams.items;
-
-      const delUserTeam = await API.graphql(
-        graphqlOperation(deleteUserTeams, {
-          input: {
-            id: userTeam[0].id,
-          },
-        })
-      );
-      console.log("leaving team - settings");
-
-      delAllUserTasks(currTeamID, user.attributes.sub);
-
-      root.render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // deletes whole team (team/members/tasks)
-  const deleteTeamF = async () => {
-    try {
-      const userTeamData = await API.graphql(
-        graphqlOperation(listUserTeams, {
-          filter: {
-            teamID: {
-              eq: currTeamID,
-            },
-          },
-        })
-      );
-      console.log("fetching user teams to delete - settings");
-      const userTeamList = userTeamData.data.listUserTeams.items;
-
-      for (let userTeam of userTeamList) {
-        const delUserTeam = await API.graphql(
-          graphqlOperation(deleteUserTeams, {
-            input: {
-              id: userTeam.id,
-            },
-          })
-        );
-        console.log("deleting user teams - settings");
-      }
-
-      const delTeam = await API.graphql(
-        graphqlOperation(deleteTeam, {
-          input: {
-            id: currTeamID,
-          },
-        })
-      );
-      console.log("deleting team - settings");
-
-      delAllTeamTasks(currTeamID);
-
-      root.render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return (
     <div className="Teamsettings">
       <Teamnavbar currTeamID={currTeamID} />
-      <div className="box">
-        <h2>Leave team:</h2>
-        <Link to={"/"}>
-          <button id="lbtn" onClick={leaveTeam}>
-            Leave
-          </button>
-        </Link>
-      </div>
-      <div className="box">
-        <h2>Delete team:</h2>
-        <Link to={"/"}>
-          <button id="btn" onClick={deleteTeamF}>
-            Delete
-          </button>
-        </Link>
-      </div>
+      <Leavebutton user={user} currTeamID={currTeamID} />
+      <Deletebutton currTeamID={currTeamID} />
     </div>
   );
 }

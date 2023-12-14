@@ -6,7 +6,7 @@ import { listUserTeams } from "../../../../graphql/queries";
 import { deleteUserTeams } from "../../../../graphql/mutations";
 
 import TaskPopup from "../taskPopup/TaskPopup";
-import delAllUserTasks from "../../../../functions/delAllUserTasks/delAllUserTasks";
+import delAllUserTasks from "../../../../functions/delAllUserTasks";
 
 import { root } from "../../../..";
 import App from "../../../../App";

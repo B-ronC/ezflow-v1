@@ -19,7 +19,11 @@ const updateTeams = (user, setMyTeamList) => {
 
       return userTeamList;
     };
-    fetchTeams().then((userTeamList) => setMyTeamList(userTeamList));
+    fetchTeams()
+      .then((userTeamList) => setMyTeamList(userTeamList))
+      .catch((err) => {
+        console.log(err);
+      });
   } catch (err) {
     console.error(err);
   }

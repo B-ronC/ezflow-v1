@@ -18,25 +18,29 @@ function Topbar({ user }) {
 
       return taskList;
     };
-    fetchTasks().then((taskList) => {
-      setTotalActiveTasks(
-        taskList.filter((task) => {
-          return task.toID === user.attributes.sub && task.status === 1;
-        })
-      );
+    fetchTasks()
+      .then((taskList) => {
+        setTotalActiveTasks(
+          taskList.filter((task) => {
+            return task.toID === user.attributes.sub && task.status === 1;
+          })
+        );
 
-      setTotalWaitingTasks(
-        taskList.filter((task) => {
-          return task.toID === user.attributes.sub && task.status === 0;
-        })
-      );
+        setTotalWaitingTasks(
+          taskList.filter((task) => {
+            return task.toID === user.attributes.sub && task.status === 0;
+          })
+        );
 
-      setTotalCreatedTasks(
-        taskList.filter((task) => {
-          return task.from === user.attributes.sub;
-        })
-      );
-    });
+        setTotalCreatedTasks(
+          taskList.filter((task) => {
+            return task.from === user.attributes.sub;
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {

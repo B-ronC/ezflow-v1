@@ -7,7 +7,7 @@ import Createteam from "./components/createteam/Createteam";
 import Teamlist from "./components/teamlist/Teamlist";
 import Signout from "./components/signout/Signout";
 
-function Sidebar({ user, signOut }) {
+function Sidebar({ user }) {
   // team list state
   const [myTeamList, setMyTeamList] = useState([]);
 
@@ -21,7 +21,7 @@ function Sidebar({ user, signOut }) {
       <div className="sidebarMenu">
         <Createteam user={user} setMyTeamList={setMyTeamList} />
         <Teamlist myTeamList={myTeamList} />
-        <Signout signOut={signOut} />
+        <Signout />
       </div>
     </div>
   );

@@ -1,16 +1,17 @@
 import "./deletebutton.css";
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { Link } from "react-router-dom";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import { listUserTeams } from "../../../../graphql/queries";
 import { deleteTeam, deleteUserTeams } from "../../../../graphql/mutations";
 import delAllTeamTasks from "../../../../functions/delAllTeamTasks";
 
 import { root } from "../../../..";
 import App from "../../../../App";
-import { BrowserRouter } from "react-router-dom";
 
 function Deletebutton({ currTeamID }) {
+  const navigate = useNavigate();
+
   // deletes whole team (team/members/tasks)
   const deleteTeamF = async () => {
     try {
@@ -27,7 +28,7 @@ function Deletebutton({ currTeamID }) {
       const userTeamList = userTeamData.data.listUserTeams.items;
 
       for (let userTeam of userTeamList) {
-        const delUserTeam = await API.graphql(
+        await API.graphql(
           graphqlOperation(deleteUserTeams, {
             input: {
               id: userTeam.id,
@@ -37,7 +38,7 @@ function Deletebutton({ currTeamID }) {
         console.log("deleting user teams - settings");
       }
 
-      const delTeam = await API.graphql(
+      await API.graphql(
         graphqlOperation(deleteTeam, {
           input: {
             id: currTeamID,
@@ -46,26 +47,28 @@ function Deletebutton({ currTeamID }) {
       );
       console.log("deleting team - settings");
 
-      delAllTeamTasks(currTeamID);
-
-      root.render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      );
+      await delAllTeamTasks(currTeamID);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const handleClick = async () => {
+    await deleteTeamF();
+    root.render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+    navigate("/");
+  };
+
   return (
     <div className="box">
       <h2>Delete team:</h2>
-      <Link to={"/"}>
-        <button id="btn" onClick={deleteTeamF}>
-          Delete
-        </button>
-      </Link>
+      <button id="btn" onClick={handleClick}>
+        Delete
+      </button>
     </div>
   );
 }

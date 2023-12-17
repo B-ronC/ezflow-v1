@@ -21,7 +21,7 @@ function Createteam({ user, setMyTeamList }) {
       const userID = user.attributes.sub;
       const teamID = newTeam.data.createTeam.id;
 
-      const newUserTeam = await API.graphql(
+      await API.graphql(
         graphqlOperation(createUserTeams, {
           input: {
             userID: userID,

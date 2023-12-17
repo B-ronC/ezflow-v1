@@ -14,7 +14,7 @@ const delAllTeamTasks = async (currTeamID) => {
     );
 
     for (let userTask of userTaskList) {
-      const delUserTask = await API.graphql(
+      await API.graphql(
         graphqlOperation(deleteUserTasks, {
           input: {
             id: userTask.id,
@@ -37,7 +37,7 @@ const delAllTeamTasks = async (currTeamID) => {
     const taskList = taskData.data.listTasks.items;
 
     for (let task of taskList) {
-      const deltask = await API.graphql(
+      await API.graphql(
         graphqlOperation(deleteTask, {
           input: {
             id: task.id,

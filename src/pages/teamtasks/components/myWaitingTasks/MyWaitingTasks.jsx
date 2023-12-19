@@ -2,12 +2,16 @@ import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { updateTask } from "../../../../graphql/mutations";
 import FromUser from "../fromUser/FromUser";
+import updateAllTasks from "../../../../functions/updateAllTasks";
 
-import { root } from "../../../..";
-import App from "../../../../App";
-import { BrowserRouter } from "react-router-dom";
-
-function MyWaitingTasks({ myWaitingTasks }) {
+function MyWaitingTasks({
+  myWaitingTasks,
+  user,
+  currTeamID,
+  setActiveTasks,
+  setWaitingTasks,
+  setCreatedTasks,
+}) {
   // changes task status to active
   const updateTaskStatus = async (task) => {
     try {
@@ -21,10 +25,12 @@ function MyWaitingTasks({ myWaitingTasks }) {
       );
       console.log("starting task - my tasks");
 
-      root.render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+      updateAllTasks(
+        user,
+        currTeamID,
+        setActiveTasks,
+        setWaitingTasks,
+        setCreatedTasks
       );
     } catch (err) {
       console.log(err);

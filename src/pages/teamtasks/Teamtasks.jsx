@@ -1,10 +1,9 @@
 import "./teamtasks.css";
 import React, { useState, useEffect } from "react";
-import { API, graphqlOperation } from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { useParams } from "react-router-dom";
-import { listUserTasks, listTasks } from "../../graphql/queries";
 
+import updateAllTasks from "../../functions/updateAllTasks";
 import Teamnavbar from "../../components/teamnavbar/Teamnavbar";
 import MyActiveTasks from "./components/myActiveTasks/MyActiveTasks";
 import MyWaitingTasks from "./components/myWaitingTasks/MyWaitingTasks";
@@ -18,75 +17,15 @@ function Teamtasks({ user }) {
   const [waitingTasks, setWaitingTasks] = useState([]);
   const [createdTasks, setCreatedTasks] = useState([]);
 
-  // updates active task and waiting task lists
-  const updateTasks = () => {
-    try {
-      const fetchTasks = async () => {
-        const userTaskData = await API.graphql(
-          graphqlOperation(listUserTasks, {
-            filter: {
-              userID: {
-                eq: user.attributes.sub,
-              },
-            },
-          })
-        );
-        console.log("fetching assigned tasks - tasks");
-        const userTaskList = userTaskData.data.listUserTasks.items;
-
-        return userTaskList;
-      };
-      fetchTasks().then((userTaskList) => {
-        setWaitingTasks(
-          userTaskList.filter((value) => {
-            return value.task.teamID === currTeamID && value.task.status === 0;
-          })
-        );
-        setActiveTasks(
-          userTaskList.filter((value) => {
-            return value.task.teamID === currTeamID && value.task.status === 1;
-          })
-        );
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // updates created task list
-  const updateCreatedTasks = () => {
-    try {
-      const fetchCreatedTasks = async () => {
-        const taskData = await API.graphql(
-          graphqlOperation(listTasks, {
-            filter: {
-              from: {
-                eq: user.attributes.sub,
-              },
-            },
-          })
-        );
-        console.log("fetching created tasks - tasks");
-        const taskList = taskData.data.listTasks.items;
-
-        return taskList;
-      };
-      fetchCreatedTasks().then((taskList) =>
-        setCreatedTasks(
-          taskList.filter((value) => {
-            return value.teamID === currTeamID;
-          })
-        )
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   // updates task lists on render
   useEffect(() => {
-    updateTasks();
-    updateCreatedTasks();
+    updateAllTasks(
+      user,
+      currTeamID,
+      setActiveTasks,
+      setWaitingTasks,
+      setCreatedTasks
+    );
   }, [currTeamID]);
 
   return (
@@ -95,11 +34,29 @@ function Teamtasks({ user }) {
       <div className="taskWrapper">
         <Taskbox
           title={"My Active Tasks:"}
-          content={<MyActiveTasks myActiveTasks={activeTasks} />}
+          content={
+            <MyActiveTasks
+              myActiveTasks={activeTasks}
+              user={user}
+              currTeamID={currTeamID}
+              setActiveTasks={setActiveTasks}
+              setWaitingTasks={setWaitingTasks}
+              setCreatedTasks={setCreatedTasks}
+            />
+          }
         />
         <Taskbox
           title={"My Waiting Tasks:"}
-          content={<MyWaitingTasks myWaitingTasks={waitingTasks} />}
+          content={
+            <MyWaitingTasks
+              myWaitingTasks={waitingTasks}
+              user={user}
+              currTeamID={currTeamID}
+              setActiveTasks={setActiveTasks}
+              setWaitingTasks={setWaitingTasks}
+              setCreatedTasks={setCreatedTasks}
+            />
+          }
         />
         <Taskbox
           title={"My Created Tasks:"}

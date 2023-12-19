@@ -3,12 +3,16 @@ import { API, graphqlOperation } from "aws-amplify";
 import { listUserTasks } from "../../../../graphql/queries";
 import { deleteUserTasks, deleteTask } from "../../../../graphql/mutations";
 import FromUser from "../fromUser/FromUser";
+import updateAllTasks from "../../../../functions/updateAllTasks";
 
-import { root } from "../../../..";
-import App from "../../../../App";
-import { BrowserRouter } from "react-router-dom";
-
-function MyActiveTasks({ myActiveTasks }) {
+function MyActiveTasks({
+  myActiveTasks,
+  user,
+  currTeamID,
+  setActiveTasks,
+  setWaitingTasks,
+  setCreatedTasks,
+}) {
   // deletes task
   const finishTask = async (task) => {
     try {
@@ -38,10 +42,12 @@ function MyActiveTasks({ myActiveTasks }) {
       );
       console.log("finished task - active tasks");
 
-      root.render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+      updateAllTasks(
+        user,
+        currTeamID,
+        setActiveTasks,
+        setWaitingTasks,
+        setCreatedTasks
       );
     } catch (err) {
       console.error(err);

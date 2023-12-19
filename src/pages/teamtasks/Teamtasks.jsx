@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 
 import updateAllTasks from "../../functions/updateAllTasks";
 import Teamnavbar from "../../components/teamnavbar/Teamnavbar";
+import Taskbox from "./components/taskbox/Taskbox";
 import MyActiveTasks from "./components/myActiveTasks/MyActiveTasks";
 import MyWaitingTasks from "./components/myWaitingTasks/MyWaitingTasks";
 import MyCreatedTasks from "./components/myCreatedTasks/MyCreatedTasks";
-import Taskbox from "./components/taskbox/Taskbox";
 
 function Teamtasks({ user }) {
   const { currTeamID } = useParams();

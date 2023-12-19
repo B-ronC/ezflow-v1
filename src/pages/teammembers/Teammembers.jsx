@@ -1,24 +1,26 @@
 import "./teammembers.css";
 import React, { useState, useEffect } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { useParams } from "react-router-dom";
+import { getTeam, listUsers } from "../../graphql/queries";
+
+import updateMembers from "../../functions/updateMembers";
 import Teamnavbar from "../../components/teamnavbar/Teamnavbar";
 import Searchbar from "./components/searchbar/Searchbar";
 import TeamOwner from "./components/teamOwner/TeamOwner";
 import Member from "./components/member/Member";
 
-import { API, graphqlOperation } from "aws-amplify";
-import { useParams } from "react-router-dom";
-import { getTeam, listUsers, listUserTeams } from "../../graphql/queries";
-
 export const teamIDContextMem = React.createContext();
+export const setMemberListContext = React.createContext();
 
 function Teammembers() {
   const { currTeamID } = useParams();
 
+  const [teamOwnerID, setTeamOwnerID] = useState([]);
   const [userList, setUserList] = useState([]);
   const [memberList, setMemberList] = useState([]);
-  const [teamOwner, setTeamOwner] = useState([]);
 
-  // fetches current owner id
+  // fetches team owner id to pass as a prop
   const fetchOwner = () => {
     try {
       const fetchTeam = async () => {
@@ -27,12 +29,12 @@ function Teammembers() {
             id: currTeamID,
           })
         );
-        console.log("fetching team to determine owner - members");
+        console.log("fetching team to determine owner ID - members");
         const team = teamData.data.getTeam;
 
         return team;
       };
-      fetchTeam().then((team) => setTeamOwner(team.owner));
+      fetchTeam().then((team) => setTeamOwnerID(team.owner));
     } catch (err) {
       console.error(err);
     }
@@ -54,33 +56,9 @@ function Teammembers() {
     }
   };
 
-  // updates member list for members page
-  const updateMembers = () => {
-    try {
-      const fetchUsers = async () => {
-        const userTeamData = await API.graphql(
-          graphqlOperation(listUserTeams, {
-            filter: {
-              teamID: {
-                eq: currTeamID,
-              },
-            },
-          })
-        );
-        console.log("fetching members - members");
-        const userTeamList = userTeamData.data.listUserTeams.items;
-
-        return userTeamList;
-      };
-      fetchUsers().then((userTeamList) => setMemberList(userTeamList));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
     updateUsers();
-    updateMembers();
+    updateMembers(currTeamID, setMemberList);
     fetchOwner();
   }, []);
 
@@ -88,41 +66,43 @@ function Teammembers() {
     <div className="Teammembers">
       <Teamnavbar currTeamID={currTeamID} />
       <teamIDContextMem.Provider value={currTeamID}>
-        <Searchbar
-          placeholder={"Search user..."}
-          data={userList}
-          userTeamList={memberList}
-        />
-        <h3>Owner:</h3>
-        {teamOwner.length !== 0 && (
-          <div>
-            <TeamOwner owner={teamOwner} />
-            <h3>Members:</h3>
-            {memberList
-              .filter((value) => {
-                return value.user.id !== teamOwner;
-              })
-              .sort((a, b) => {
-                if (a.user.name < b.user.name) {
-                  return -1;
-                }
-                if (a.user.name > b.user.name) {
-                  return 1;
-                }
-                return 0;
-              })
-              .map((member) => {
-                return (
-                  <Member
-                    key={member.user.id}
-                    member={member.user}
-                    owner={teamOwner}
-                    teamid={currTeamID}
-                  />
-                );
-              })}
-          </div>
-        )}
+        <setMemberListContext.Provider value={setMemberList}>
+          <Searchbar
+            placeholder={"Search user..."}
+            data={userList}
+            userTeamList={memberList}
+          />
+          <h3>Owner:</h3>
+          {teamOwnerID.length !== 0 && (
+            <div>
+              <TeamOwner ownerID={teamOwnerID} />
+              <h3>Members:</h3>
+              {memberList
+                .filter((value) => {
+                  return value.user.id !== teamOwnerID;
+                })
+                .sort((a, b) => {
+                  if (a.user.name < b.user.name) {
+                    return -1;
+                  }
+                  if (a.user.name > b.user.name) {
+                    return 1;
+                  }
+                  return 0;
+                })
+                .map((member) => {
+                  return (
+                    <Member
+                      key={member.user.id}
+                      member={member.user}
+                      owner={teamOwnerID}
+                      teamid={currTeamID}
+                    />
+                  );
+                })}
+            </div>
+          )}
+        </setMemberListContext.Provider>
       </teamIDContextMem.Provider>
     </div>
   );

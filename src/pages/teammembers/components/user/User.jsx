@@ -1,20 +1,19 @@
 import "./user.css";
 import React, { useContext } from "react";
-import { teamIDContextMem } from "../../Teammembers";
+import { teamIDContextMem, setMemberListContext } from "../../Teammembers";
 import { API, graphqlOperation } from "aws-amplify";
 import { createUserTeams } from "../../../../graphql/mutations";
 
-import { root } from "../../../..";
-import App from "../../../../App";
-import { BrowserRouter } from "react-router-dom";
+import updateMembers from "../../../../functions/updateMembers";
 
 function User({ user }) {
   const currTeamID = useContext(teamIDContextMem);
+  const setMemberList = useContext(setMemberListContext);
 
   // adds user to current team on button click
   const addUser = async () => {
     try {
-      const createUserTeam = await API.graphql(
+      await API.graphql(
         graphqlOperation(createUserTeams, {
           input: {
             userID: user.id,
@@ -22,13 +21,9 @@ function User({ user }) {
           },
         })
       );
-      console.log("added user");
+      console.log("added user to team");
 
-      root.render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      );
+      updateMembers(currTeamID, setMemberList);
     } catch (err) {
       console.error(err);
     }

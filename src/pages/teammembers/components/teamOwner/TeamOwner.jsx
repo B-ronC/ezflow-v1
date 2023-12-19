@@ -4,7 +4,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { getUser } from "../../../../graphql/queries";
 import TaskPopup from "../taskPopup/TaskPopup";
 
-function TeamOwner({ owner }) {
+function TeamOwner({ ownerID }) {
   const [teamOwner, setTeamOwner] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,7 +14,7 @@ function TeamOwner({ owner }) {
       const fetchUser = async () => {
         const userData = await API.graphql(
           graphqlOperation(getUser, {
-            id: owner,
+            id: ownerID,
           })
         );
         console.log("fetching owner - team owner");

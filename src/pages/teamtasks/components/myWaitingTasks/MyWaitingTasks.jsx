@@ -8,6 +8,29 @@ import App from "../../../../App";
 import { BrowserRouter } from "react-router-dom";
 
 function MyWaitingTasks({ myWaitingTasks }) {
+  // changes task status to active
+  const updateTaskStatus = async (task) => {
+    try {
+      await API.graphql(
+        graphqlOperation(updateTask, {
+          input: {
+            id: task.task.id,
+            status: 1,
+          },
+        })
+      );
+      console.log("starting task - my tasks");
+
+      root.render(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       {myWaitingTasks
@@ -35,31 +58,7 @@ function MyWaitingTasks({ myWaitingTasks }) {
             </div>
             <h4>Description:</h4>
             <div className="desc">{task.task.description}</div>
-            <button
-              onClick={async () => {
-                try {
-                  const updateStatus = await API.graphql(
-                    graphqlOperation(updateTask, {
-                      input: {
-                        id: task.task.id,
-                        status: 1,
-                      },
-                    })
-                  );
-                  console.log("starting task - my tasks");
-
-                  root.render(
-                    <BrowserRouter>
-                      <App />
-                    </BrowserRouter>
-                  );
-                } catch (err) {
-                  console.log(err);
-                }
-              }}
-            >
-              Start
-            </button>
+            <button onClick={() => updateTaskStatus(task)}>Start</button>
           </div>
         ))}
     </div>

@@ -1,15 +1,15 @@
 import "./teamtasks.css";
 import React, { useState, useEffect } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { useParams } from "react-router-dom";
+import { listUserTasks, listTasks } from "../../graphql/queries";
 
 import Teamnavbar from "../../components/teamnavbar/Teamnavbar";
 import MyActiveTasks from "./components/myActiveTasks/MyActiveTasks";
 import MyWaitingTasks from "./components/myWaitingTasks/MyWaitingTasks";
 import MyCreatedTasks from "./components/myCreatedTasks/MyCreatedTasks";
-
-import { useParams } from "react-router-dom";
-import { withAuthenticator } from "@aws-amplify/ui-react";
-import { API, graphqlOperation } from "aws-amplify";
-import { listUserTasks, listTasks } from "../../graphql/queries";
+import Taskbox from "./components/taskbox/Taskbox";
 
 function Teamtasks({ user }) {
   const { currTeamID } = useParams();
@@ -93,18 +93,18 @@ function Teamtasks({ user }) {
     <div className="Teamtasks">
       <Teamnavbar currTeamID={currTeamID} />
       <div className="taskWrapper">
-        <div className="taskBox">
-          <h2>My Active Tasks:</h2>
-          <MyActiveTasks myActiveTasks={activeTasks} />
-        </div>
-        <div className="taskBox">
-          <h2>My Waiting Tasks:</h2>
-          <MyWaitingTasks myWaitingTasks={waitingTasks} />
-        </div>
-        <div className="taskBox">
-          <h2>My Created Tasks:</h2>
-          <MyCreatedTasks myCreatedTasks={createdTasks} />
-        </div>
+        <Taskbox
+          title={"My Active Tasks:"}
+          content={<MyActiveTasks myActiveTasks={activeTasks} />}
+        />
+        <Taskbox
+          title={"My Waiting Tasks:"}
+          content={<MyWaitingTasks myWaitingTasks={waitingTasks} />}
+        />
+        <Taskbox
+          title={"My Created Tasks:"}
+          content={<MyCreatedTasks myCreatedTasks={createdTasks} />}
+        />
       </div>
     </div>
   );

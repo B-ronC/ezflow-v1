@@ -95,8 +95,9 @@ function Teammembers() {
                     <Member
                       key={member.user.id}
                       member={member.user}
-                      owner={teamOwnerID}
+                      ownerID={teamOwnerID}
                       teamid={currTeamID}
+                      setMemberList={setMemberList}
                     />
                   );
                 })}

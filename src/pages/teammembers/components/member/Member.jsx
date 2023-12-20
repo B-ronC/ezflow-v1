@@ -1,21 +1,18 @@
 import "./member.css";
 import React, { useState } from "react";
-import { withAuthenticator } from "@aws-amplify/ui-react";
 import { API, graphqlOperation } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import { listUserTeams } from "../../../../graphql/queries";
 import { deleteUserTeams } from "../../../../graphql/mutations";
 
-import TaskPopup from "../taskPopup/TaskPopup";
 import delAllUserTasks from "../../../../functions/delAllUserTasks";
+import updateMembers from "../../../../functions/updateMembers";
+import TaskPopup from "../taskPopup/TaskPopup";
 
-import { root } from "../../../..";
-import App from "../../../../App";
-import { BrowserRouter } from "react-router-dom";
-
-function Member({ user, member, owner, teamid }) {
+function Member({ user, member, ownerID, teamid, setMemberList }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // delete member on click
+  // deletes member on click
   const deleteMember = async () => {
     try {
       const userTeamData = await API.graphql(
@@ -30,7 +27,7 @@ function Member({ user, member, owner, teamid }) {
       console.log("fetching user team - member");
       const userTeam = userTeamData.data.listUserTeams.items;
 
-      const delUserTeam = await API.graphql(
+      await API.graphql(
         graphqlOperation(deleteUserTeams, {
           input: {
             id: userTeam[0].id,
@@ -39,13 +36,8 @@ function Member({ user, member, owner, teamid }) {
       );
       console.log("removing member - member");
 
-      delAllUserTasks(teamid, member.id);
-
-      root.render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      );
+      await delAllUserTasks(teamid, member.id);
+      updateMembers(teamid, setMemberList);
     } catch (err) {
       console.error(err);
     }
@@ -63,7 +55,7 @@ function Member({ user, member, owner, teamid }) {
         onClose={() => setIsOpen(false)}
         taskMem={member}
       />
-      {user.attributes.sub === owner && (
+      {user.attributes.sub === ownerID && (
         <button className="removeBtn" onClick={deleteMember}>
           Remove
         </button>
